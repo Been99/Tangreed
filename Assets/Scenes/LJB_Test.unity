@@ -622,7 +622,19 @@ MonoBehaviour:
     m_ActionId: e9abd86e-72b7-4c34-93f9-748a905e58e5
     m_ActionName: Player/Interact[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1229683856}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: cb54fcd7-fe8e-4751-b567-81c740e1c82f
     m_ActionName: Player/Jump[/Keyboard/w,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
