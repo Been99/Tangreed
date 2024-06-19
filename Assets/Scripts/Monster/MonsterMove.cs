@@ -29,12 +29,19 @@ public class MonsterMove : MonoBehaviour
         {
             if (monsterMechanism.isGrounded)
             {
-                Vector2 direction = monsterMechanism.IsPlayerDetected() ? monsterMechanism.DirectionToTarget() : RandomMovement();
-                ApplyMove(direction);
-
-                if (!monsterMechanism.IsPlayerDetected())
+                if (monsterMechanism.IsPlayerDetected())
                 {
-                    yield return new WaitForSeconds(coroutineMoveInterval);
+                    Vector2 direction = monsterMechanism.DirectionToTarget();
+                    ApplyMove(direction);
+                }
+                else
+                {
+                    StopMove();
+                    yield return new WaitForSeconds(coroutineMoveInterval); // 1. 멈추고 일정 시간 대기
+
+                    Vector2 direction = RandomMovement();
+                    ApplyMove(direction);
+                    yield return new WaitForSeconds(coroutineMoveInterval); // 2. 이동 후 일정 시간 대기
                 }
             }
             else
@@ -47,9 +54,11 @@ public class MonsterMove : MonoBehaviour
 
     private void ApplyMove(Vector2 direction)
     {
+        direction = direction.normalized;
+
         direction = LinearMove(direction);
 
-        if (monsterMechanism.IsGroundInDirection(direction) == true)
+        if (monsterMechanism.IsGroundInDirection(direction))
         {
             Vector2 movement = direction * moveSpeed;
             _rb.velocity = movement;

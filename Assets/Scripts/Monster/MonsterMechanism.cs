@@ -5,10 +5,9 @@ public class MonsterMechanism : MonoBehaviour
     private Rigidbody2D _rb;
     private LayerMask playerLayer;
     private LayerMask groundLayer;
-    private float downRayDistance = 1f;
+    private BoxCollider2D boxCollider;
+    private float downRayDistance = 0.01f;
     private float detectionRadius = 5f;
-    private float normalGravityScale;
-    private float fallingGravityScale = 20f;
 
     public bool isGrounded = true;
 
@@ -17,7 +16,33 @@ public class MonsterMechanism : MonoBehaviour
         playerLayer = LayerMask.GetMask("Player");
         groundLayer = LayerMask.GetMask("Ground");
         _rb = GetComponent<Rigidbody2D>();
-        normalGravityScale = _rb.gravityScale;
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        CheckGroundStatus();
+    }
+
+    private void CheckGroundStatus()
+    {
+        Vector2 origin = new Vector2(transform.position.x, transform.position.y - boxCollider.bounds.extents.y); // 콜라이더의 가장 하단부분을 레이캐스트의 시작점으로 잡기 위함
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, downRayDistance, groundLayer);
+
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+            _rb.gravityScale = 0;
+            if (_rb.velocity.y < 0) // 아래쪽으로 떨어지는 속도만 제거
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, 0);
+            }
+        }
+        else
+        {
+            isGrounded = false;
+            _rb.gravityScale = 20;
+        }
     }
 
     public Vector2 DirectionToTarget()
@@ -30,7 +55,7 @@ public class MonsterMechanism : MonoBehaviour
         }
         else
         {
-            Vector2 direction = ((Vector2)playerCollider.transform.position - (Vector2)this.transform.position).normalized;
+            Vector2 direction = ((Vector2)playerCollider.transform.position - (Vector2)this.transform.position);
             return direction;
         }
     }
@@ -43,27 +68,9 @@ public class MonsterMechanism : MonoBehaviour
 
     public bool IsGroundInDirection(Vector2 direction)
     {
-        Vector2 origin = new Vector2(transform.position.x + direction.x, transform.position.y);
+        Vector2 origin = new Vector2(transform.position.x + direction.x, transform.position.y - boxCollider.bounds.extents.y);
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, downRayDistance, groundLayer);
 
         return hit.collider != null;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision) // 혹시라도 몬스터가 떨어지는 상황 생길까봐 넣어둠
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = true;
-            _rb.gravityScale = normalGravityScale;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // 혹시라도 몬스터가 떨어지는 상황 생길까봐 넣어둠
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = false;
-            _rb.gravityScale = fallingGravityScale;
-        }
     }
 }
