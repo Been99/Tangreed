@@ -7,8 +7,8 @@ public class MonsterMove : MonoBehaviour
     private MonsterController monsterController;
     private MonsterMechanism monsterMechanism;
     private SpriteRenderer spriteRenderer;
-    private float ultimatedMoveInterval = 1.5f; // 코루틴 움직임 주기,,,
-    private float moveSpeed = 2f;
+    private float coroutineMoveInterval = 1.5f; // 코루틴 움직임 주기
+    private float moveSpeed = 1f;
 
     private void Awake()
     {
@@ -20,25 +20,21 @@ public class MonsterMove : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(MoveRoutine());
+        StartCoroutine(UltimatedMove());
     }
 
-    private IEnumerator MoveRoutine()
+    private IEnumerator UltimatedMove()
     {
         while (true)
         {
             if (monsterMechanism.isGrounded)
             {
-                if (monsterMechanism.IsPlayerDetected())
+                Vector2 direction = monsterMechanism.IsPlayerDetected() ? monsterMechanism.DirectionToTarget() : RandomMovement();
+                ApplyMove(direction);
+
+                if (!monsterMechanism.IsPlayerDetected())
                 {
-                    Vector2 direction = monsterMechanism.DirectionToTarget();
-                    ApplyMove(direction);
-                }
-                else
-                {
-                    Vector2 direction = monsterMechanism.RandomMovement();
-                    ApplyMove(direction);
-                    yield return new WaitForSeconds(ultimatedMoveInterval);
+                    yield return new WaitForSeconds(coroutineMoveInterval);
                 }
             }
             else
@@ -53,25 +49,25 @@ public class MonsterMove : MonoBehaviour
     {
         direction = LinearMove(direction);
 
-        if (monsterMechanism.IsGroundInDirection(direction))
+        if (monsterMechanism.IsGroundInDirection(direction) == true)
         {
             Vector2 movement = direction * moveSpeed;
             _rb.velocity = movement;
 
             monsterController.OnMove(direction);
+            spriteRenderer.flipX = direction.x > 0;
+        }
+    }
 
-            if (direction.x < 0)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else if (direction.x > 0)
-            {
-                spriteRenderer.flipX = true;
-            }
+    private Vector2 LinearMove(Vector2 direction) // 대각 이동 방지 메서드
+    {
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            return new Vector2(direction.x, 0);
         }
         else
         {
-            StopMove();
+            return new Vector2(0, direction.y);
         }
     }
 
@@ -81,23 +77,10 @@ public class MonsterMove : MonoBehaviour
         monsterController.OnMove(Vector2.zero);
     }
 
-    private Vector2 LinearMove(Vector2 direction) // 대각 이동 방지 메서드
+    public Vector2 RandomMovement()
     {
-        if (direction.y > 0 && Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
-        {
-            direction = new Vector2(Mathf.Sign(direction.x), 0);
-        }
-        else
-        {
-            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-            {
-                direction = new Vector2(Mathf.Sign(direction.x), 0);
-            }
-            else
-            {
-                direction = new Vector2(0, Mathf.Sign(direction.y));
-            }
-        }
-        return direction;
+        float randomDirection = Random.Range(-3f, 3f);
+        return new Vector2(randomDirection, 0);
     }
 }
+

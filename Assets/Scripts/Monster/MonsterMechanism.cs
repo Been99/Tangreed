@@ -5,8 +5,8 @@ public class MonsterMechanism : MonoBehaviour
     private Rigidbody2D _rb;
     private LayerMask playerLayer;
     private LayerMask groundLayer;
+    private float downRayDistance = 1f;
     private float detectionRadius = 5f;
-    private float rayDistance = 1f;
     private float normalGravityScale;
     private float fallingGravityScale = 20f;
 
@@ -30,7 +30,8 @@ public class MonsterMechanism : MonoBehaviour
         }
         else
         {
-            return ((Vector2)playerCollider.transform.position - (Vector2)this.transform.position);
+            Vector2 direction = ((Vector2)playerCollider.transform.position - (Vector2)this.transform.position).normalized;
+            return direction;
         }
     }
 
@@ -42,24 +43,18 @@ public class MonsterMechanism : MonoBehaviour
 
     public bool IsGroundInDirection(Vector2 direction)
     {
-        // 몬스터 아래로 레이 방향 설정
         Vector2 origin = new Vector2(transform.position.x + direction.x, transform.position.y);
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, downRayDistance, groundLayer);
 
         return hit.collider != null;
     }
 
-    public Vector2 RandomMovement()
-    {
-        float randomDirection = Random.Range(-3f, 3f);
-        return new Vector2(randomDirection, 0);
-    }
     private void OnCollisionEnter2D(Collision2D collision) // 혹시라도 몬스터가 떨어지는 상황 생길까봐 넣어둠
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isGrounded = true;
-            _rb.gravityScale = normalGravityScale; // 원상 복귀
+            _rb.gravityScale = normalGravityScale;
         }
     }
 
