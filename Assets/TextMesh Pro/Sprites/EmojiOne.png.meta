@@ -1,12 +1,27 @@
 fileFormatVersion: 2
-guid: a5b982618517c0841abdb4d08cdf0c5f
+guid: dffef66376be4fa480fb02b19edbe903
 TextureImporter:
-  internalIDToNameTable: []
+  fileIDToRecycleName:
+    21300000: EmojiOne_0
+    21300002: EmojiOne_1
+    21300004: EmojiOne_2
+    21300006: EmojiOne_3
+    21300008: EmojiOne_4
+    21300010: EmojiOne_6
+    21300012: EmojiOne_7
+    21300014: EmojiOne_8
+    21300016: EmojiOne_9
+    21300018: EmojiOne_10
+    21300020: EmojiOne_11
+    21300022: EmojiOne_12
+    21300024: EmojiOne_13
+    21300026: EmojiOne_5
+    21300028: EmojiOne_14
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 5
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -20,23 +35,18 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
-  streamingMipmaps: 0
-  streamingMipmapsPriority: 0
-  vTOnly: 0
-  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: 1
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-    aniso: 1
-    mipBias: 0
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -48,28 +58,21 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
-  applyGammaDecoding: 0
-  swizzle: 50462976
-  cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,12 +80,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -90,12 +91,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -103,12 +102,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -116,314 +113,278 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk (36x30)_0
+      name: EmojiOne_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 2
-        width: 29
-        height: 27
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54f965a55c01bc942b5d16bdd58e290e
-      internalID: 1902204115
+      spriteID: 4bcc36da2108f2c4ba3de5c921d25c3c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_1
+      name: EmojiOne_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 3
-        width: 29
-        height: 27
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 444990dd4cba26f44bc74f5744f06e29
-      internalID: 1874717744
+      spriteID: e9eea8093eaeaee4d901c4553f572c22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_2
+      name: EmojiOne_2
       rect:
         serializedVersion: 2
-        x: 76
-        y: 3
-        width: 29
-        height: 27
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c450d812e49142641a85d53e711d79da
-      internalID: 1532519128
+      spriteID: 49451da35411dcc42a3692e39b0fde70
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_3
+      name: EmojiOne_3
       rect:
         serializedVersion: 2
-        x: 112
-        y: 3
-        width: 29
-        height: 27
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b13597aa93e1ec459351f432ea9494a
-      internalID: -449628790
+      spriteID: f65709664b924904790c850a50ca82bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_4
+      name: EmojiOne_4
       rect:
         serializedVersion: 2
-        x: 148
-        y: 2
-        width: 29
-        height: 27
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f72d32e2d2831144faedbc80f4a439e5
-      internalID: -602604774
+      spriteID: 5b92c568a5ec9ad4b9ed90e271f1c9a8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_5
+      name: EmojiOne_6
       rect:
         serializedVersion: 2
-        x: 184
-        y: 1
-        width: 29
-        height: 27
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b83a7a213bb1aed40858fa8ad87fd769
-      internalID: 833114001
+      spriteID: b10f2b48b7281594bb8a24a6511a35af
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_6
+      name: EmojiOne_7
       rect:
         serializedVersion: 2
-        x: 218
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a600f9329dc2246a897e89f4d283cd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmojiOne_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66cffa363b90ab14787d8a5b90cf4502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmojiOne_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55cf3d409c9b89349b1e1bdc1cc224ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmojiOne_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9e58eaf96feef42bcefa1cf257193f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmojiOne_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2489120affc155840ae6a7be2e93ce19
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmojiOne_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 33
-        height: 25
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c51c6f7ec08f8549ad277ec09db3330
-      internalID: 1880018062
+      spriteID: 412349a150598d14da4d7140df5c0286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_7
+      name: EmojiOne_13
       rect:
         serializedVersion: 2
-        x: 254
+        x: 128
         y: 0
-        width: 33
-        height: 25
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7d4bb70879461f4cbbd1199d6ed047f
-      internalID: 290408214
+      spriteID: a937464b42bb3634782dea34c6becb6c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_8
+      name: EmojiOne_5
       rect:
         serializedVersion: 2
-        x: 290
-        y: 2
-        width: 33
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67f9970b1ba2eef42930766acdc08171
-      internalID: -1649264511
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk (36x30)_9
-      rect:
-        serializedVersion: 2
-        x: 326
-        y: 3
-        width: 33
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5829a4027b6f54646bc3f8f7a5773287
-      internalID: 201739890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk (36x30)_10
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 3
-        width: 33
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c0e6be3b6338ebc4f8809805e0aaca63
-      internalID: 1834828231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk (36x30)_11
-      rect:
-        serializedVersion: 2
-        x: 398
-        y: 3
-        width: 33
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 556fb08ead778f942a3f4eb13bda2fa5
-      internalID: 554792442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk (36x30)_12
-      rect:
-        serializedVersion: 2
-        x: 434
-        y: 2
-        width: 33
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 865538b9ea880ba40afeb1eed1b37247
-      internalID: -1823342165
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk (36x30)_13
-      rect:
-        serializedVersion: 2
-        x: 470
-        y: 1
-        width: 33
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6635edddc38a10e4cabe93d09599fd89
-      internalID: -1970903337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk (36x30)_14
-      rect:
-        serializedVersion: 2
-        x: 506
+        x: 256
         y: 0
-        width: 33
-        height: 25
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,20 +392,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82becac845ea2e0408958052bfed4d3b
-      internalID: 2097028807
+      spriteID: b0f933b217682124dbfc5e6b89abe3d0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk (36x30)_15
+      name: EmojiOne_14
       rect:
         serializedVersion: 2
-        x: 542
-        y: 0
-        width: 33
-        height: 25
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -452,8 +412,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cae12142b137d2e4a8d2283a7ba69730
-      internalID: -202708598
+      spriteID: f7235c763afe4434e8bb666750a41096
       vertices: []
       indices: 
       edges: []
@@ -461,32 +420,12 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    spriteID: 3e32d8f5477abfc43b19066e8ad5032e
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
-    nameFileIdTable:
-      Walk (36x30)_0: 1902204115
-      Walk (36x30)_1: 1874717744
-      Walk (36x30)_10: 1834828231
-      Walk (36x30)_11: 554792442
-      Walk (36x30)_12: -1823342165
-      Walk (36x30)_13: -1970903337
-      Walk (36x30)_14: 2097028807
-      Walk (36x30)_15: -202708598
-      Walk (36x30)_2: 1532519128
-      Walk (36x30)_3: -449628790
-      Walk (36x30)_4: -602604774
-      Walk (36x30)_5: 833114001
-      Walk (36x30)_6: 1880018062
-      Walk (36x30)_7: 290408214
-      Walk (36x30)_8: -1649264511
-      Walk (36x30)_9: 201739890
-  mipmapLimitGroupName: 
-  pSDRemoveMatte: 0
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 
