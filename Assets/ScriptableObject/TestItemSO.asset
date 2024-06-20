@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
   m_Name: TestItemSO
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8"
-  itemDescripttion: "\uD14C\uC2A4\uD2B8\uC6A9 \uC544\uC774\uD15C\uC774\uB2E4"
-  itemType: 0
-  icon: {fileID: 0}
-  itemStats: []
+  itemName: "\uD14C\uC2A4\uD2B8 \uC0AC\uACFC"
+  itemDescripttion: "\uD14C\uC2A4\uD2B8\uC6A9 \uC0AC\uACFC\uC774\uB2E4"
+  itemType: 2
+  icon: {fileID: -1861674647, guid: b2661c4a7d6b5e84689ada824bb02b3b, type: 3}
+  itemStats:
+  - itemStat: 0
+    statValue: 20
   itemPrice: 1000
