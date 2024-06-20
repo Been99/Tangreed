@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
 {
-    private Transform target;
-    private MonsterController monsterController;
-    private MonsterMechanism monsterMechanism;
-    private MonsterStatsHandler monsterStatsHandler;
-    private float timeSinceLastAttack = 0;
+    protected Transform target;
+    protected MonsterController monsterController;
+    protected MonsterMechanism monsterMechanism;
+    protected MonsterStatsHandler monsterStatsHandler;
+    protected float timeSinceLastAttack = 0;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         monsterController = GetComponent<MonsterController>();
         monsterMechanism = GetComponent<MonsterMechanism>();
         monsterStatsHandler = GetComponent<MonsterStatsHandler>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         target = monsterMechanism.GetPlayerTransform();
 
@@ -35,13 +35,13 @@ public class MonsterAttack : MonoBehaviour
         }
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         monsterController.OnAttack(monsterStatsHandler.currentStats.monsterAttackSO);
         Invoke("EndAttack", monsterStatsHandler.currentStats.monsterAttackSO.attackDelay);
     }
 
-    private void EndAttack()
+    protected virtual void EndAttack()
     {
         monsterController.isAttacking = false;
     }
