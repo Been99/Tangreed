@@ -3,7 +3,7 @@ using UnityEngine;
 public class MonsterMechanism : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private LayerMask playerLayer;
+    public LayerMask playerLayer;
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
     private float groundCheckDistance = 0.1f;
