@@ -1,5 +1,8 @@
 
 public interface IInteractable
 {
-    public string GetInteractPrompt(); // 인벤토리에서 마우스오버 시 출력할 아이템의 정보
+    public string GetItemNamePrompt(); // 출력될 아이템의 이름
+    public string GetItemDescriptionPrompt(); // 출력될 아이템의 설명
+
+    public ItemSO GetItemData(); // ItemSO 반환
 }

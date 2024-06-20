@@ -15,7 +15,7 @@ public class ItemSO : ScriptableObject
 {
     [Header("Info")]
     public string itemName; // 아이템 이름
-    public string itemDescripttion; // 아이템 설명
+    public string itemDescription; // 아이템 설명
     public EItemType itemType; // 아이템 타입
     public Sprite icon; // 아이템 이미지
 
