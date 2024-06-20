@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIInventory : MonoBehaviour
 {
     public ItemSlot[] slots;
+    public GameObject inventoryWindow;
     public Transform getItemSlots;
 
     public ItemSO selectedItem;
@@ -15,6 +16,8 @@ public class UIInventory : MonoBehaviour
 
     private void Start()
     {
+        inventoryWindow.SetActive(false);
+
         slots = new ItemSlot[getItemSlots.childCount];
 
         for(int i = 0; i < slots.Length; i++)

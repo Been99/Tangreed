@@ -22,4 +22,10 @@ public class ItemObject : MonoBehaviour, IInteractable
     {
         return itemdata;
     }
+
+    public void GetItemInteract()
+    {
+        // TODO : 아이템 데이터 인벤토리로 바로 넘어갈 수 있도록
+        Destroy(gameObject);
+    }
 }
