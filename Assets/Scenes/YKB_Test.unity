@@ -309,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 173703342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.8, y: -0.23, z: -0.0053940965}
+  m_LocalPosition: {x: -11.8, y: -0.23, z: -0.0053940965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14947,9 +14947,10 @@ GameObject:
   - component: {fileID: 674790322}
   - component: {fileID: 674790321}
   - component: {fileID: 674790320}
+  - component: {fileID: 674790323}
   - component: {fileID: 674790319}
   - component: {fileID: 674790318}
-  - component: {fileID: 674790323}
+  - component: {fileID: 674790324}
   m_Layer: 7
   m_Name: AngryPig
   m_TagString: Untagged
@@ -14966,7 +14967,7 @@ Transform:
   m_GameObject: {fileID: 674790316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 3.77, z: 0}
+  m_LocalPosition: {x: 0.7, y: 22.6, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15094,6 +15095,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02ac9262e49d524fbd73f33edf454c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &674790324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674790316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6976cd7fa7f574ca72f17fa2bef0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    monsterName: AngryPig
+    maxHP: 20
+    moveSpeed: 1
+    experienceReward: 5
+    monsterAttackSO: {fileID: 11400000, guid: 58d8ac7afacc3fb4ba6224c284455884, type: 2}
 --- !u!1 &717379066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7439089820432292325, guid: da14d3ad1988a3844a7eade924af79bc, type: 3}
