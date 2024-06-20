@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.TextCore.Text;
 
 public class InputController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class InputController : MonoBehaviour
     /*Player Input*/
     private float moveInput;
     private Vector2 mouseDelta;
+    private Vector2 mousePos;
 
     public float groundCheckRadius = 0.4f; // 바닥 체크 반경
     public LayerMask groundLayer; // 바닥 레이어
@@ -29,6 +31,9 @@ public class InputController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     public float boostForce = 0.005f;
+
+    public Action PlayerHit;
+
 
 
     private void Awake()
@@ -40,7 +45,7 @@ public class InputController : MonoBehaviour
 
     private void Start()
     {
-       // Cursor.lockState = CursorLockMode.Locked;
+       //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -65,12 +70,14 @@ public class InputController : MonoBehaviour
             {
                 // 바닥에 있을 때 점프
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                animator.SetTrigger("OnJump");
             }
             else if (canDoubleJump)
             {
                 // 공중에 있을 때 더블 점프
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false; // 더블 점프 후 더 이상 점프 불가
+                animator.SetTrigger("OnDoubleJump");
             }
             isJumping = false;
         }
@@ -79,14 +86,14 @@ public class InputController : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<float>();
-        //if (context.phase == InputActionPhase.Performed)
-        //{
-        //    animator.SetBool("IsWalk", true);
-        //}
-        //else if (context.phase == InputActionPhase.Canceled)
-        //{
-        //    animator.SetBool("IsWalk", false);
-        //}
+        if (context.phase == InputActionPhase.Performed)
+        {
+            animator.SetBool("OnMove", true);
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            animator.SetBool("OnMove", false);
+        }
     }
 
     public void OnLookInput(InputAction.CallbackContext context)
@@ -103,8 +110,6 @@ public class InputController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             isJumping = true;
-            Debug.Log("점프");
-            //animator.SetBool("IsJump", true);
         }
     }
 
@@ -119,16 +124,28 @@ public class InputController : MonoBehaviour
 
     public void OnDashInPut(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector2 mouseWorldPosition2D = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
+        Vector2 characterWorldPosition2D = new Vector2(transform.position.x, transform.position.y);
+        mousePos = (mouseWorldPosition2D - characterWorldPosition2D).normalized;
+        Debug.Log(mousePos);
+
+        if (context.phase == InputActionPhase.Started)
         {
-            rb.AddForce(mouseDelta * boostForce, ForceMode2D.Impulse);
+            rb.AddForce(mousePos * boostForce, ForceMode2D.Impulse);
+
+            //추가적으로 횟수제한을 두고 게이지가 일정시간동안 채워지게 설정
         }
     }
 
-    public void OnAttackInput(InputAction.CallbackContext context) //공격 인풋 세팅
+    public void OnFireInput(InputAction.CallbackContext context) //공격 인풋 세팅
     {
         //무기 Sprite쪽에 붙일 예정
     }
 
-
+    public void OnHit()
+    {
+        PlayerHit?.Invoke(); //Player Manager로 이동 예정
+    }
 }
