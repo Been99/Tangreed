@@ -27,21 +27,28 @@ public class MonsterMove : MonoBehaviour
     {
         while (true)
         {
-            if (monsterMechanism.isGrounded)
+            if (!monsterController.isAttacking)
             {
-                if (monsterMechanism.IsPlayerDetected())
+                if (monsterMechanism.isGrounded)
                 {
-                    Vector2 direction = monsterMechanism.DirectionToTarget();
-                    ApplyMove(direction);
+                    if (monsterMechanism.IsPlayerDetected())
+                    {
+                        Vector2 direction = monsterMechanism.GetPlayerDirection();
+                        ApplyMove(direction);
+                    }
+                    else
+                    {
+                        StopMove();
+                        yield return new WaitForSeconds(coroutineMoveInterval); // 1. 멈추고 일정 시간 대기
+
+                        Vector2 direction = RandomMovement();
+                        ApplyMove(direction);
+                        yield return new WaitForSeconds(coroutineMoveInterval); // 2. 이동 후 일정 시간 대기
+                    }
                 }
                 else
                 {
                     StopMove();
-                    yield return new WaitForSeconds(coroutineMoveInterval); // 1. 멈추고 일정 시간 대기
-
-                    Vector2 direction = RandomMovement();
-                    ApplyMove(direction);
-                    yield return new WaitForSeconds(coroutineMoveInterval); // 2. 이동 후 일정 시간 대기
                 }
             }
             else
@@ -65,6 +72,10 @@ public class MonsterMove : MonoBehaviour
 
             monsterController.OnMove(direction);
             spriteRenderer.flipX = direction.x > 0;
+        }
+        else
+        {
+            StopMove(); // 몬스터가 낙사하고 싶어 하지 않도록 설계
         }
     }
 
