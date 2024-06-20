@@ -261,8 +261,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2402832472116544602}
-  - component: {fileID: 2508940537112860807}
-  - component: {fileID: 8182563037417898775}
+  - component: {fileID: 4154545367891717561}
+  - component: {fileID: 682422203354342186}
   m_Layer: 0
   m_Name: GreenPlayform(3x2)
   m_TagString: Untagged
@@ -291,7 +291,7 @@ Transform:
   - {fileID: 8733581733719039453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2508940537112860807
+--- !u!61 &4154545367891717561
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,7 +336,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
---- !u!251 &8182563037417898775
+--- !u!251 &682422203354342186
 PlatformEffector2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

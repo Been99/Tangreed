@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5813614324044268897}
   - component: {fileID: 9209773543043428944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1937890686913144897}
   - component: {fileID: 4904778506460645294}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600323909303692470}
   - component: {fileID: 1130093696168962874}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8306128188858510058}
   - component: {fileID: 8400239739830175882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_38 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845918619369762903}
   - component: {fileID: 8277666543534386313}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2168353684345423274}
   - component: {fileID: 2226398007336861537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 710189059122928694}
   - component: {fileID: 132857089651189788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_6 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3235401654806446559}
   - component: {fileID: 9135357573163363438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870588790659279475}
   - component: {fileID: 4543990042232963693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_37
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4770489361569555294}
   - component: {fileID: 582445584424752694}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain (16x16)_38 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,9 +849,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4160261122203985271}
-  - component: {fileID: 7951766073085573442}
-  - component: {fileID: 5036769711574401593}
-  m_Layer: 0
+  - component: {fileID: 1781918235626152024}
+  - component: {fileID: 3107676757978050639}
+  m_Layer: 6
   m_Name: GreenPlayform(5x2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,7 @@ Transform:
   - {fileID: 1600323909303692470}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7951766073085573442
+--- !u!61 &1781918235626152024
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -928,7 +928,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 2}
   m_EdgeRadius: 0
---- !u!251 &5036769711574401593
+--- !u!251 &3107676757978050639
 PlatformEffector2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
