@@ -66,6 +66,10 @@ public class MonsterMove : MonoBehaviour
             monsterController.OnMove(direction);
             spriteRenderer.flipX = direction.x > 0;
         }
+        else
+        {
+            StopMove(); // 몬스터가 낙사하고 싶어 하지 않도록 설계
+        }
     }
 
     private Vector2 LinearMove(Vector2 direction) // 대각 이동 방지 메서드
