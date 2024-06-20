@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4642009736458593074}
   - component: {fileID: 3089919048986842782}
   - component: {fileID: 2215432390452261267}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7809236379778330636}
   - component: {fileID: 5423532073469656165}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5563662722946636927}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weaponpivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 3154683533794955959}
   - component: {fileID: 8081684971610353802}
   - component: {fileID: 2980284087566007776}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VirtualGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

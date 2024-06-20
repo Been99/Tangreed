@@ -401,11 +401,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7541961689617834444, guid: 2e0fe036d5ab4af429e9ddbdc34b6e9c, type: 3}
+      propertyPath: DungeonDoor
+      value: 
+      objectReference: {fileID: 5372859709084841787}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e0fe036d5ab4af429e9ddbdc34b6e9c, type: 3}
+--- !u!1 &5372859709084841787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100128300689711813, guid: 2e0fe036d5ab4af429e9ddbdc34b6e9c, type: 3}
+  m_PrefabInstance: {fileID: 1483774291524215371}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
