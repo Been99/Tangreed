@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557257248404921134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weaponpivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8671445467007809338}
   - component: {fileID: 8549496915582031274}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,10 +130,9 @@ GameObject:
   - component: {fileID: 83771200906976567}
   - component: {fileID: 7191356463576098475}
   - component: {fileID: 7324626394609527555}
-  - component: {fileID: 678836422551752528}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,25 +367,6 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 5
   boostForce: 50
---- !u!114 &678836422551752528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4719167282465440943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa1d3171ac58da41896b4ff1bc44a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrompt: {fileID: 0}
-  prompt: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  waitTime: 1
-  inventory: {fileID: 0}
 --- !u!1 &9136634833465947509
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +378,7 @@ GameObject:
   - component: {fileID: 5486531763873564582}
   - component: {fileID: 2501990513502018338}
   - component: {fileID: 4682465597248119784}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VirtualGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
