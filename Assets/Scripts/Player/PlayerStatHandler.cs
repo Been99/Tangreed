@@ -21,12 +21,19 @@ public class PlayerStatHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (baseStat.playerSO != null)
+        //if (baseStat.playerSO != null)
+        //{
+        //    baseStat.playerSO = Instantiate(baseStat.playerSO);
+        //    CurrentStat.playerSO = Instantiate(baseStat.playerSO);
+        //}
+        if(baseStat != null)
         {
-            baseStat.playerSO = Instantiate(baseStat.playerSO);
-            CurrentStat.playerSO = Instantiate(baseStat.playerSO);
+            CurrentStat = gameObject.AddComponent<PlayerStat>();
+            CurrentStat.statsChangeType = baseStat.statsChangeType;
+            CurrentStat.maxHealth = baseStat.maxHealth;
+            CurrentStat.speed = baseStat.speed;
+            CurrentStat.playerSO = baseStat.playerSO;
         }
-
         UpdateCharacterStat();
     }
 
