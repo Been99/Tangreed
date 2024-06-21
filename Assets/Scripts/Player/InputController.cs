@@ -6,12 +6,14 @@ using UnityEngine.Android;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.TextCore.Text;
+using static UnityEngine.ParticleSystem;
 
 public class InputController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Camera mainCam;
     [HideInInspector] public Animator animator;
+    private ParticleSystem particle;
 
     /*Player*/
     [SerializeField] private SpriteRenderer armRenderer;
@@ -48,11 +50,13 @@ public class InputController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        particle = GetComponentInChildren<ParticleSystem>();
         mainCam = Camera.main; //mainCamera 태그 붙어있는 카메라를 가져옴
     }
 
     private void Start()
     {
+        particle.Stop();
        //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -152,8 +156,6 @@ public class InputController : MonoBehaviour
             TimeSpan += Time.deltaTime; //대쉬 시간 흐르기
             if (TimeSpan < CheckTime) //대쉬 시간이 딜레이 시간보다 작을 때는 
             {
-                //IgnoreLayer = true;
-                //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Moveable"), true);
                 rb.gravityScale = 0; //플레이어 중력 값을 0으로
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
                 if (rb.velocity.y < 0 && hit.collider != null)
@@ -164,11 +166,19 @@ public class InputController : MonoBehaviour
                     TimeSpan = 0f;
                     rb.velocity = Vector2.zero;
                     rb.gravityScale = 2;
+                    if (particle.isPlaying)
+                    {
+                        particle.Stop();
+                    }
                 }
                 else
                 {
                     transform.position = Vector2.Lerp(transform.position, DashPos, Time.deltaTime * dashSpeed); // 대쉬
                     animator.SetBool("OnJump", true);
+                    if (!particle.isPlaying)
+                    {
+                        particle.Play();
+                    }
                 }
             }
             else if (TimeSpan > CheckTime) //대쉬 시간이 딜레이 시간보다 클 때는
@@ -178,6 +188,10 @@ public class InputController : MonoBehaviour
                 rb.velocity = Vector2.zero; //플레이어의 가속도를 0으로
                 rb.gravityScale = 2; //플레이어의 중력 값을 다시 원 상태로
                 isBoost = false;
+                if (particle.isPlaying)
+                {
+                    particle.Stop();
+                }
             }
         }
     }
@@ -189,7 +203,6 @@ public class InputController : MonoBehaviour
         }
         else if (isJumping)
         {
-            Debug.Log("점프!");
             if (isGrounded || isPlatform)
             {
                 // 바닥에 있을 때 점프
