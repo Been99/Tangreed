@@ -36,13 +36,18 @@ public class MonsterProjectileController : MonoBehaviour
     {
         if (other.gameObject.layer == playerLayer)
         {
-            HitTarget();
-            Debug.Log("플레이어와 트리거 충돌;ㅅ;");
+            HitTarget(other.gameObject);
         }
     }
 
-    private void HitTarget()
+    private void HitTarget(GameObject target)
     {
+        HealthSystem targetHealthSystem = target.GetComponent<HealthSystem>();
+        if (targetHealthSystem != null)
+        {
+            targetHealthSystem.ChangeHealth(-monsterAttackSO.attackDamage);
+        }
+
         DestroyProjectile();
     }
 
