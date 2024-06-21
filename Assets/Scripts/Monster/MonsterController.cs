@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    private HealthSystem healthSystem;
+    [HideInInspector] public HealthSystem healthSystem;
 
     public Action<Vector2> OnMoveEvent;
     public Action<MonsterAttackSO> OnAttackEvent;
@@ -23,6 +24,7 @@ public class MonsterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (healthSystem == null) { return; }
         if (healthSystem.currentHP <= 0) { return; }
     }
 
