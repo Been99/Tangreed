@@ -9,7 +9,7 @@ public class PlayerStatHandler : MonoBehaviour
     // 기본스탯과 추가 스탯을 계산해서 최종 스탯을 계산하는 로직
 
     [SerializeField] private PlayerStat baseStat;
-    public PlayerStat CurrentStat { get; private set; }
+    public PlayerStat CurrentStat { get; private set; } = new();
     public List<PlayerStat> statModifiers = new List<PlayerStat>();
 
     private readonly float MinCritical = 5f; // 공격 딜레이 최소값
@@ -21,18 +21,10 @@ public class PlayerStatHandler : MonoBehaviour
 
     private void Awake()
     {
-        //if (baseStat.playerSO != null)
-        //{
-        //    baseStat.playerSO = Instantiate(baseStat.playerSO);
-        //    CurrentStat.playerSO = Instantiate(baseStat.playerSO);
-        //}
-        if(baseStat != null)
+        if (baseStat.playerSO != null)
         {
-            CurrentStat = gameObject.AddComponent<PlayerStat>();
-            CurrentStat.statsChangeType = baseStat.statsChangeType;
-            CurrentStat.maxHealth = baseStat.maxHealth;
-            CurrentStat.speed = baseStat.speed;
-            CurrentStat.playerSO = baseStat.playerSO;
+            baseStat.playerSO = Instantiate(baseStat.playerSO);
+            CurrentStat.playerSO = Instantiate(baseStat.playerSO);
         }
         UpdateCharacterStat();
     }
@@ -105,12 +97,12 @@ public class PlayerStatHandler : MonoBehaviour
     //    currentRanged.projectileColor = UpdateColor(operation, currentRanged.projectileColor, newRanged.projectileColor);
     //}
 
-    private Color UpdateColor(Func<float, float, float> operation, Color current, Color modifier)
-    {
-        return new Color(
-            operation(current.r, modifier.r),
-            operation(current.g, modifier.g),
-            operation(current.b, modifier.b),
-            operation(current.a, modifier.a));
-    }
+    //private Color UpdateColor(Func<float, float, float> operation, Color current, Color modifier)
+    //{
+    //    return new Color(
+    //        operation(current.r, modifier.r),
+    //        operation(current.g, modifier.g),
+    //        operation(current.b, modifier.b),
+    //        operation(current.a, modifier.a));
+    //}
 }
