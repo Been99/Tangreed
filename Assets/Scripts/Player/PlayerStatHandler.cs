@@ -14,7 +14,7 @@ public class PlayerStatHandler : MonoBehaviour
     private readonly float MinSpeed = 1f; // 속도 최소값
     private readonly int MinMaxHealth = 50; // 최대 체력의 최소값
 
-    void Start()
+    private void Awake()
     {
         // CurrentStat 초기화
         if (baseStat != null)
@@ -26,7 +26,6 @@ public class PlayerStatHandler : MonoBehaviour
             CurrentStat.playerSO = baseStat.playerSO;
         }
     }
-
     void Update()
     {
 
