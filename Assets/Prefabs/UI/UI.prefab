@@ -5545,7 +5545,6 @@ MonoBehaviour:
   getItemSlots: {fileID: 6819069537569582217}
   itemSlots: []
   inventoryWindow: {fileID: 7242582117757890218}
-  selectedItemIndex: 0
 --- !u!1 &7434708704235004307
 GameObject:
   m_ObjectHideFlags: 0
