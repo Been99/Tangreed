@@ -3,10 +3,28 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
+    private HealthSystem healthSystem;
+
     public Action<Vector2> OnMoveEvent;
     public Action<MonsterAttackSO> OnAttackEvent;
+    public Action<MonsterController> OnDeathEvent;
 
     public bool isAttacking = false;
+
+    private void Awake()
+    {
+        healthSystem = GetComponent<HealthSystem>();
+    }
+
+    private void Start()
+    {
+        healthSystem.OnDeathEvent += OnDeath;
+    }
+
+    private void FixedUpdate()
+    {
+        if (healthSystem.currentHP <= 0) { return; }
+    }
 
     public void OnMove(Vector2 direction)
     {
@@ -17,5 +35,12 @@ public class MonsterController : MonoBehaviour
     {
         isAttacking = true;
         OnAttackEvent?.Invoke(monsterAttackSO);
+    }
+
+    public void OnDeath()
+    {
+        isAttacking = false;
+
+        OnDeathEvent?.Invoke(this);
     }
 }

@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 1475090783878302429}
   - component: {fileID: 7290656437406733933}
   - component: {fileID: 3114653519251344711}
+  - component: {fileID: 5781445425689399288}
   m_Layer: 7
   m_Name: Chameleon
   m_TagString: Untagged
@@ -299,3 +300,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6217557751969100334, guid: 64189d55a25812044a949d15092d28f5, type: 3}
+--- !u!114 &5781445425689399288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219875519441399270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194340723ddc7fc4ea95ee2f0eec5a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0

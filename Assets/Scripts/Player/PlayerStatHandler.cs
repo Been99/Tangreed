@@ -9,16 +9,14 @@ public class PlayerStatHandler : MonoBehaviour
     // 기본스탯과 추가 스탯을 계산해서 최종 스탯을 계산하는 로직
 
     [SerializeField] private PlayerStat baseStat;
-    public PlayerStat CurrentStat { get; private set; } = new();
+    public PlayerStat CurrentStat { get; private set; }
     public List<PlayerStat> statModifiers = new List<PlayerStat>();
 
-    private readonly float MinAttackDelay = 0.03f; //공격 딜래이 최소값
+    private readonly float MinCritical = 5f; // 공격 딜레이 최소값
     private readonly float MinAttackPower = 0.5f; //공격력 최소값
     private readonly float MinAttackSize = 0.4f; //공격 크기 최소값
     private readonly float MinAttackSpeed = 0.1f; // 공격 스피드 최소값
-
     private readonly float MinSpeed = 0.8f; //속도 최소값
-
     private readonly int MinMaxHealth = 50; // 최대 체력의 최소값
 
     private void Awake()

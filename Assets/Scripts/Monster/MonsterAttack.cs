@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class MonsterAttack : MonoBehaviour
+public abstract class MonsterAttack : MonoBehaviour // 추상 클래스
 {
     protected Transform target;
+    protected HealthSystem targetHealthSystem;
     protected MonsterController monsterController;
     protected MonsterMechanism monsterMechanism;
     protected MonsterStatsHandler monsterStatsHandler;
@@ -37,9 +38,18 @@ public class MonsterAttack : MonoBehaviour
 
     protected virtual void Attack()
     {
+        targetHealthSystem = target.GetComponent<HealthSystem>();
+
+        if (targetHealthSystem != null)
+        {
+            ApplyDamage(targetHealthSystem);
+        }
+
         monsterController.OnAttack(monsterStatsHandler.currentStats.monsterAttackSO);
         Invoke("EndAttack", monsterStatsHandler.currentStats.monsterAttackSO.attackDelay);
     }
+
+    protected abstract void ApplyDamage(HealthSystem targetHealthSystem);
 
     protected virtual void EndAttack()
     {

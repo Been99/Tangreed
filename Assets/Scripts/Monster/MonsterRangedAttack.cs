@@ -1,17 +1,15 @@
 using UnityEngine;
 
-public class MonsterRangedAttack : MonsterAttack
+public class MonsterRangedAttack : MonsterAttack // 원거리 전용
 {
     public GameObject projectilePrefab;
 
-    protected override void Attack()
+    protected override void ApplyDamage(HealthSystem targetHealthSystem)
     {
-        base.Attack();
-
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         MonsterProjectileController projectileController = projectile.GetComponent<MonsterProjectileController>();
 
-        if(projectileController != null)
+        if (projectileController != null)
         {
             Vector3 direction = (target.position - transform.position).normalized;
             projectileController.Initialize(direction, monsterStatsHandler.currentStats.monsterAttackSO);
