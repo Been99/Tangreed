@@ -23,6 +23,17 @@ public class MonsterMove : MonoBehaviour
         StartCoroutine(UltimatedMove());
     }
 
+    private void FixedUpdate()
+    {
+        if (monsterController.healthSystem.currentHP <= 0)
+        {
+            _rb.velocity = Vector2.zero;
+            _rb.simulated = false;
+            monsterController.OnMove(Vector2.zero);
+            return;
+        }
+    }
+
     private IEnumerator UltimatedMove()
     {
         while (true)

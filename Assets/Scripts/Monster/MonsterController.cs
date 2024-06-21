@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    private HealthSystem healthSystem;
+    [HideInInspector] public HealthSystem healthSystem;
 
     public Action<Vector2> OnMoveEvent;
     public Action<MonsterAttackSO> OnAttackEvent;
@@ -19,10 +20,12 @@ public class MonsterController : MonoBehaviour
     private void Start()
     {
         healthSystem.OnDeathEvent += OnDeath;
+        StartCoroutine(ContinuousDamage()); // 테스트
     }
 
     private void FixedUpdate()
     {
+        if (healthSystem == null) { return; }
         if (healthSystem.currentHP <= 0) { return; }
     }
 
@@ -42,5 +45,18 @@ public class MonsterController : MonoBehaviour
         isAttacking = false;
 
         OnDeathEvent?.Invoke(this);
+    }
+
+    // 테스트용 체력 감소 코루틴
+    private IEnumerator ContinuousDamage()
+    {
+        while (true)
+        {
+            if (healthSystem != null && healthSystem.currentHP > 0)
+            {
+                healthSystem.ChangeHealth(-4);
+            }
+            yield return new WaitForSeconds(1); // 1초마다 실행
+        }
     }
 }
