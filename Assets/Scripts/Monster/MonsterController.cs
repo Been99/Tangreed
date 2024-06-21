@@ -20,7 +20,6 @@ public class MonsterController : MonoBehaviour
     private void Start()
     {
         healthSystem.OnDeathEvent += OnDeath;
-        StartCoroutine(ContinuousDamage()); // 테스트
     }
 
     private void FixedUpdate()
@@ -45,18 +44,5 @@ public class MonsterController : MonoBehaviour
         isAttacking = false;
 
         OnDeathEvent?.Invoke(this);
-    }
-
-    // 테스트용 체력 감소 코루틴
-    private IEnumerator ContinuousDamage()
-    {
-        while (true)
-        {
-            if (healthSystem != null && healthSystem.currentHP > 0)
-            {
-                healthSystem.ChangeHealth(-4);
-            }
-            yield return new WaitForSeconds(1); // 1초마다 실행
-        }
     }
 }
