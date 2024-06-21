@@ -8,47 +8,57 @@ public class InteractEventHandler : MonoBehaviour
     public ItemPrompt itemPrompt;
     public GameObject prompt;
 
+    [SerializeField] private LayerMask targetLayer;
+
     private ItemSO curItemSO;
+
+    [SerializeField] float waitTime;
+
+    // 임의설정
+    public GameObject inventory;
+    private bool activeInventory = false;
 
     private void Start()
     {
         prompt.SetActive(false);
+        inventory.SetActive(activeInventory); // 임의설정
     }
 
-
-    [SerializeField] private LayerMask targetLayer;
+    // 임의설정
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log("인벤토리창");
+            activeInventory = !activeInventory;
+            inventory.SetActive(activeInventory);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("충돌");
+        GameObject itemObject = collision.gameObject;
 
-        if ((targetLayer.value & (1 << collision.gameObject.layer)) != 0)
+        if ((targetLayer.value & (1 << itemObject.layer)) != 0)
         {
-            // TryGetComponent로 먼저 객체 설정을 해야 함 현재 비어있음
-            if (collision.TryGetComponent(out IInteractable curinteractable))
+            // TryGetComponent로 먼저 객체를 가져옴
+            if (itemObject.TryGetComponent(out IInteractable curinteractable))
             {
                 curItemSO = curinteractable.GetItemData();
 
                 itemPrompt.SetItemPrompt(curItemSO.itemName, curItemSO.itemDescription);
-                // exit 되거나 인벤토리로 들어가면 curinteractable를 비워야함
+
+                StartCoroutine(ItemInteractionHandle(itemObject, curItemSO));
             }
         }
     }
 
-    // TODO : 일정 시간이 지나면 인벤토리로 이동할 수 있게
-    // 타이머 기능을 사용
-    // 여기서 특정시간을 변수로 설정하여 시간이 초과되면 인벤토리로 넘어갈 수 있도록
-    // 타이머 관련 내용은 코루틴 참고
-    private void OnTriggerExit2D(Collider2D collision)
+    private IEnumerator ItemInteractionHandle(GameObject gameObject, ItemSO itemSO)
     {
-        // 임시 설정
-        if (collision.TryGetComponent(out IInteractable curinteractable))
-        {
-            Debug.Log("충돌해제");
-            curItemSO = null;
-            itemPrompt.DisablePrompt();
-        }
+        yield return new WaitForSeconds(waitTime);
+        prompt.SetActive(false);
+        GameManager.Instance.itemSO = itemSO;
+        Destroy(gameObject);
     }
-
-
 }
