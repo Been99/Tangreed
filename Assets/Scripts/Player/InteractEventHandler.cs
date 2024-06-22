@@ -15,13 +15,13 @@ public class InteractEventHandler : MonoBehaviour
     [SerializeField] float waitTime;
 
     // 임의설정
-    public GameObject inventory;
+    public GameObject inventoryObj;
     private bool activeInventory = false;
 
     private void Start()
     {
         prompt.SetActive(false);
-        inventory.SetActive(activeInventory); // 임의설정
+        inventoryObj.SetActive(activeInventory); // 임의설정
     }
 
     // 임의설정
@@ -31,7 +31,7 @@ public class InteractEventHandler : MonoBehaviour
         {
             Debug.Log("인벤토리창");
             activeInventory = !activeInventory;
-            inventory.SetActive(activeInventory);
+            inventoryObj.SetActive(activeInventory);
         }
     }
 
@@ -46,19 +46,19 @@ public class InteractEventHandler : MonoBehaviour
             if (itemObject.TryGetComponent(out IInteractable curinteractable))
             {
                 curItemSO = curinteractable.GetItemData();
-
-                itemPrompt.SetItemPrompt(curItemSO.itemName, curItemSO.itemDescription);
-
-                StartCoroutine(ItemInteractionHandle(itemObject, curItemSO));
+                GameManager.Instance.itemSO = curItemSO;
+                GameManager.Instance.addItem?.Invoke();
+                itemPrompt.SetItemPrompt(curItemSO.itemName, curItemSO);
+                Destroy(itemObject);
+                StartCoroutine(ItemInteractionHandle());
             }
         }
     }
 
-    private IEnumerator ItemInteractionHandle(GameObject gameObject, ItemSO itemSO)
+    private IEnumerator ItemInteractionHandle()
     {
         yield return new WaitForSeconds(waitTime);
         prompt.SetActive(false);
-        GameManager.Instance.itemSO = itemSO;
-        Destroy(gameObject);
+        GameManager.Instance.itemSO = null;
     }
 }

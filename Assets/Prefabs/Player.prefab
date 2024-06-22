@@ -389,7 +389,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   waitTime: 1
-  inventory: {fileID: 0}
+  inventoryObj: {fileID: 0}
 --- !u!114 &3049348533881555108
 MonoBehaviour:
   m_ObjectHideFlags: 0

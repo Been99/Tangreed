@@ -12,7 +12,7 @@ public enum StatsChangeType
 public enum EItemType
 {
     Weapon,
-    Defend,
+    armor,
     Accessory,
     Food,
     Count

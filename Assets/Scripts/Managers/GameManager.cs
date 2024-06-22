@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     public ItemSO itemSO;
     public Action addItem;
 
-    private void Awake()
+    private void Start()
     {
         Inventory = GetComponent<UIInventory>();
     }

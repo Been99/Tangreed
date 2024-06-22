@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
@@ -21,7 +19,7 @@ public class UIInventory : MonoBehaviour
     public Transform getItemSlots;
     public ItemSlot[] itemSlots;
 
-    public GameObject inventoryWindow;
+    [SerializeField] private GameObject inventoryWindow;
 
 
     private void Awake()
@@ -41,8 +39,7 @@ public class UIInventory : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.addItem += ItemTypeCheckAfterAdd;
-
+        GameManager.Instance.addItem += AddItem;
         inventoryWindow.SetActive(false);       
     }
 
@@ -56,49 +53,77 @@ public class UIInventory : MonoBehaviour
         }
     }
 
-    void ItemTypeCheckAfterAdd()
+    void AddItem()
     {
         ItemSO itemData = GameManager.Instance.itemSO;
 
-        // 확인용
-        if(itemData == null)
+        switch (itemData.itemType)
         {
-            Debug.Log("추가할 아이템 없음");
-            return;
-        }
-
-        // 아이템의 타입에 따라 인벤토리의 위치 지정해야함
-        // 1) 아이템의 타입이 무기이고, 슬롯에 빈자리가 있을 때
-        // 2) 아이템의 타입이 방어구이고, 슬롯에 빈자리가 있을 때
-        // 3) 아이템의 타입이 악세서리이고, 슬롯에 빈자리가 있을 때 
-        // 4) 위의 무기, 방어구, 악세서리 슬롯이 모두 차있고, 일반 슬롯이 비어 있을 때
-        // 5) 일반 슬롯까지 모두 찼을 때
-
-        GameManager.Instance.itemSO = null;
-    }
-
-    public void UpdateUI()
-    {
-        for(int i = 0; i < itemSlots.Length;i++)
-        {
-            if (itemSlots[i].itemSO != null)
-            {
-                itemSlots[i].Set();
-            }
-            else
-            {
-                itemSlots[i].Clear();
-            }
+            case EItemType.Weapon:
+                EquipItemSlotSet(equip1Slots, equip2Slots, 0, itemData);
+                break;
+            case EItemType.armor:
+                EquipItemSlotSet(equip1Slots, equip2Slots, 1, itemData);
+                break;
+            case EItemType.Accessory:
+                AccItemSlotSet(equipAccSlots, itemData);
+                break;
+            default:
+                UnEquipItemSlotSet(itemData);
+                break;
         }
     }
 
-    ItemSlot GetEmptySlot()
+    private void EquipItemSlotSet(ItemSlot[] slots, ItemSlot[] slots2, int index, ItemSO so)
     {
-        for(int i=0; i < itemSlots.Length; i++)
+        if (slots[index].itemSO == null && slots2[index].itemSO == null)
         {
-            if (itemSlots[i].itemSO != null)
+            slots[index].itemSO = so;
+            slots[index].SetSlot();
+        }
+        else if(slots[index].itemSO != null && slots2[index].itemSO == null)
+        {
+            slots2[index].itemSO = so;
+            slots2[index].SetSlot();
+        }
+        else
+            UnEquipItemSlotSet(so);
+    }
+
+    private void AccItemSlotSet(ItemSlot[] slots, ItemSO so)
+    {
+        ItemSlot emptyAccSlot = GetEmptySlot(slots);
+
+        if (emptyAccSlot != null)
+        {
+            emptyAccSlot.itemSO = so;
+            emptyAccSlot.SetSlot();
+        }
+        else
+            UnEquipItemSlotSet(so);
+    }
+
+    private void UnEquipItemSlotSet(ItemSO so)
+    {
+        Debug.Log("꽉차서 여기로");
+        ItemSlot emptySlot = GetEmptySlot(itemSlots);
+
+        if (emptySlot != null)
+        {
+            emptySlot.itemSO = so;
+            emptySlot.SetSlot();
+        }
+        else
+            Debug.Log("빈 슬롯이 없음");
+    }
+
+    public ItemSlot GetEmptySlot(ItemSlot[] slots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].itemSO == null)
             {
-                return itemSlots[i];
+                return slots[i];
             }
         }
         return null;
