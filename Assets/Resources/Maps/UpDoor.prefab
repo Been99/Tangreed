@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2030637013561008182}
   - component: {fileID: 5518854735840377721}
+  - component: {fileID: 1971774809006859550}
   m_Layer: 0
-  m_Name: DoorUp
+  m_Name: UpDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,6 +82,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7078266, y: 2.5319312}
   m_EdgeRadius: 0
+--- !u!114 &1971774809006859550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209679426788999512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9d82730a61b76409601ef569365c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallTilemap: {fileID: 0}
+  backTilemap: {fileID: 0}
+  movableTilemap: {fileID: 0}
+  mainWallTilemap: {fileID: 0}
+  mainBackTilemap: {fileID: 0}
+  mainMovableTilemap: {fileID: 0}
+  tile: {fileID: 0}
+  startPos: {fileID: 0}
+  endPos: {fileID: 0}
+  doorStartIndex: {x: 0, y: 0, z: 0}
+  doorEndIndex: {x: 0, y: 0, z: 0}
+  mainStartIndex: {x: 0, y: 0, z: 0}
+  mainEndIndex: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0}
+  nextRoom: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  type: 0
+  parentStage: {fileID: 0}
+  nowDoorLocked: 0
+  doorParticle: {fileID: 0}
+  mapInfoPos: {fileID: 0}
+  startIndex: {x: 0, y: 0, z: 0}
+  parentStartIndex: {x: 0, y: 0, z: 0}
 --- !u!1 &3439231610985965931
 GameObject:
   m_ObjectHideFlags: 0

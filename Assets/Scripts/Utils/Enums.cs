@@ -76,7 +76,7 @@ public enum ROOMCLASS
 // Door에서 사용
 public enum DOORTYPE
 {
-    Up,
+    Up = 0,
     Down,
     Right,
     Left,

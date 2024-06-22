@@ -57,14 +57,14 @@ public class MapManager : Singleton<MapManager>
     // Resources의 Maps 폴더에서 가져온다.
     public void LoadStagePrefabs(STAGE stage)
     {
-        largeRoom = Resources.LoadAll<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/Large");
-        mediumRoom = Resources.LoadAll<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/Medium");
-        smallRoom = Resources.LoadAll<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/Small");
+        largeRoom = Resources.LoadAll<GameObject>($"Maps/Large");
+        mediumRoom = Resources.LoadAll<GameObject>($"Maps/Medium");
+        smallRoom = Resources.LoadAll<GameObject>($"Maps/Small");
 
-        specialRoom[(int)ROOMTYPE.Start] = Resources.Load<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/Start/Stage1_Start");
-        specialRoom[(int)ROOMTYPE.Restaurant] = Resources.Load<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/Restaurant/Stage1_Restaurant");
-        specialRoom[(int)ROOMTYPE.End] = Resources.Load<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/End/Stage1_End");
-        specialRoom[(int)ROOMTYPE.Boss] = Resources.Load<GameObject>($"Prefabs/Map_Prefabs/MapPrefabs/{stage.ToString()}/{ROOMTYPE.Boss.ToString()}/Stage1_Boss");
+        specialRoom[(int)ROOMTYPE.Start] = Resources.Load<GameObject>($"Maps/Special/Map_Start");
+        specialRoom[(int)ROOMTYPE.Restaurant] = Resources.Load<GameObject>($"Maps/Special/Map_Restaurant");
+        specialRoom[(int)ROOMTYPE.End] = Resources.Load<GameObject>($"Maps/Special/Map_End");
+        specialRoom[(int)ROOMTYPE.Boss] = Resources.Load<GameObject>($"Maps/Special/Map_Boss1");
     }
 
     public void StageSetting(GameObject[] rooms, int size)
