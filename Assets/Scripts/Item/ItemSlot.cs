@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,20 +7,15 @@ public class ItemSlot : MonoBehaviour
     public ItemSO itemSO;
     public Image iconImage;
     public int index;
-
     public UIInventory inventory;
 
-    public void Set()
+    public void SetSlot()
     {
-        iconImage.enabled = true;
-        iconImage.gameObject.SetActive(true);
         iconImage.sprite = itemSO.icon;
     }
 
-    public void Clear()
+    public void ClearSlot()
     {
         itemSO = null;
-        iconImage.enabled = false;
-        iconImage.gameObject.SetActive(false);
     }
 }

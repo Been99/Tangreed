@@ -12,7 +12,7 @@ public class MonsterStatsHandler : MonoBehaviour
 
     public void InitializeMonsterStats()
     {
-        if (baseStats == null) {  return; }
+        if (baseStats == null) { return; }
 
         MonsterAttackSO monsterAttackSO = Instantiate(baseStats.monsterAttackSO);
 

@@ -4963,7 +4963,6 @@ GameObject:
   - component: {fileID: 8418393783002230622}
   - component: {fileID: 3049348533881555108}
   - component: {fileID: 3633572914489308559}
-  - component: {fileID: 5791495218690326512}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -5221,7 +5220,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   waitTime: 1
-  inventory: {fileID: 0}
+  inventoryObj: {fileID: 0}
 --- !u!114 &3049348533881555108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5247,24 +5246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530509af34e5593489c914f7a77e59dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStat: {fileID: 5791495218690326512}
+  baseStat:
+    statsChangeType: 2
+    maxHealth: 50
+    speed: 5.5
+    playerSO: {fileID: 11400000, guid: 589588dd67f972a4ab45ac60bc6d6dd2, type: 2}
   statModifiers: []
---- !u!114 &5791495218690326512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4719167282465440943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 398894b066d6e8342b4001921ba76415, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsChangeType: 2
-  maxHealth: 77
-  speed: 0
-  playerSO: {fileID: 11400000, guid: 589588dd67f972a4ab45ac60bc6d6dd2, type: 2}
 --- !u!1 &9136634833465947509
 GameObject:
   m_ObjectHideFlags: 0
@@ -5340,7 +5327,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1792049996, guid: 91285eb3a9e167547aa658730f3be620, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
