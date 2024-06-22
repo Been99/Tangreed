@@ -18,8 +18,9 @@ public abstract class MonsterAttack : MonoBehaviour // 추상 클래스
 
     protected virtual void Update()
     {
-        target = monsterMechanism.GetPlayerTransform();
+        if (monsterController.healthSystem.currentHP <= 0) { return; }
 
+        target = monsterMechanism.GetPlayerTransform();
         if (target == null) { return; }
 
         float attackRange = monsterStatsHandler.currentStats.monsterAttackSO.attackRange;

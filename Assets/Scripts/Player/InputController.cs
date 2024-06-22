@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.TextCore.Text;
+using static UnityEngine.ParticleSystem;
 
 public class InputController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Camera mainCam;
     [HideInInspector] public Animator animator;
+    private ParticleSystem particle;
 
     /*Player*/
     [SerializeField] private SpriteRenderer armRenderer;
@@ -25,14 +28,21 @@ public class InputController : MonoBehaviour
 
     public float groundCheckRadius = 0.4f; // 바닥 체크 반경
     public LayerMask groundLayer; // 바닥 레이어
+    public LayerMask platformLayer;
     private bool isGrounded;
+    private bool isPlatform;
     private bool canDoubleJump;
     private bool isJumping;
+    private bool isDown;
+    private bool isBoost;
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
-    public float boostForce = 0.005f;
+    public float jumpForce = 50f;
 
     public Action PlayerHit;
+
+    float dashSpeed = 15f;
+    float CheckTime = 0.25f;
+    float TimeSpan = 0f;
 
 
 
@@ -40,11 +50,13 @@ public class InputController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        particle = GetComponentInChildren<ParticleSystem>();
         mainCam = Camera.main; //mainCamera 태그 붙어있는 카메라를 가져옴
     }
 
     private void Start()
     {
+        particle.Stop();
        //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -52,35 +64,22 @@ public class InputController : MonoBehaviour
     {
         //바닥 체크
         isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
+        isPlatform = Physics2D.OverlapCircle(transform.position, groundCheckRadius, platformLayer);
 
         // 바닥에 닿았을 때 더블 점프 가능하도록 초기화
-        if (isGrounded)
+        if (isGrounded || isPlatform)
         {
             canDoubleJump = true;
+            animator.SetBool("OnJump", false);
         }
+
+        Jump();
+        Boost();
     }
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput * moveSpeed , rb.velocity.y);
 
-        if (isJumping)
-        {
-            Debug.Log("점프!");
-            if (isGrounded)
-            {
-                // 바닥에 있을 때 점프
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                animator.SetTrigger("OnJump");
-            }
-            else if (canDoubleJump)
-            {
-                // 공중에 있을 때 더블 점프
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                canDoubleJump = false; // 더블 점프 후 더 이상 점프 불가
-                animator.SetTrigger("OnDoubleJump");
-            }
-            isJumping = false;
-        }
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -101,7 +100,6 @@ public class InputController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
         Vector2 worldPos = mainCam.ScreenToWorldPoint(mouseDelta); // 카메라의 범위를 알아야함 월드의 좌표로 바꿔서
         mouseDelta = (worldPos - (Vector2)transform.position).normalized; //Transform의 위치에서 world 까지의 거리 구하기 =  world - transform)
-
         RotatePos(mouseDelta);
     }
 
@@ -109,7 +107,14 @@ public class InputController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            isJumping = true;
+            if(Input.GetKey(KeyCode.S))
+            {
+                isDown = true;
+            }
+            else
+            {
+                isJumping = true;
+            }
         }
     }
 
@@ -124,16 +129,9 @@ public class InputController : MonoBehaviour
 
     public void OnDashInPut(InputAction.CallbackContext context)
     {
-        Vector3 mousePosition = Input.mousePosition;
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector2 mouseWorldPosition2D = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
-        Vector2 characterWorldPosition2D = new Vector2(transform.position.x, transform.position.y);
-        mousePos = (mouseWorldPosition2D - characterWorldPosition2D).normalized;
-        Debug.Log(mousePos);
-
         if (context.phase == InputActionPhase.Started)
         {
-            rb.AddForce(mousePos * boostForce, ForceMode2D.Impulse);
+            isBoost = true;
 
             //추가적으로 횟수제한을 두고 게이지가 일정시간동안 채워지게 설정
         }
@@ -147,5 +145,96 @@ public class InputController : MonoBehaviour
     public void OnHit()
     {
         PlayerHit?.Invoke(); //Player Manager로 이동 예정
+    }
+
+    private void Boost()
+    {
+        Vector2 CurPos = new Vector2(transform.position.x, transform.position.y);
+        Vector2 DashPos = CurPos + mouseDelta*2;
+        if (isBoost)
+        {
+            TimeSpan += Time.deltaTime; //대쉬 시간 흐르기
+            if (TimeSpan < CheckTime) //대쉬 시간이 딜레이 시간보다 작을 때는 
+            {
+                rb.gravityScale = 0; //플레이어 중력 값을 0으로
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
+                if (rb.velocity.y < 0 && hit.collider != null)
+                {
+                    // Ground에 부딪히기 직전에 멈춤
+                    transform.position = hit.point;
+                    isBoost = false;
+                    TimeSpan = 0f;
+                    rb.velocity = Vector2.zero;
+                    rb.gravityScale = 2;
+                    if (particle.isPlaying)
+                    {
+                        particle.Stop();
+                    }
+                }
+                else
+                {
+                    transform.position = Vector2.Lerp(transform.position, DashPos, Time.deltaTime * dashSpeed); // 대쉬
+                    animator.SetBool("OnJump", true);
+                    if (!particle.isPlaying)
+                    {
+                        particle.Play();
+                    }
+                }
+            }
+            else if (TimeSpan > CheckTime) //대쉬 시간이 딜레이 시간보다 클 때는
+            {
+                //IgnoreLayer = false;
+                TimeSpan = 0f; //대쉬 시간 초기화(재사용하기 위해)
+                rb.velocity = Vector2.zero; //플레이어의 가속도를 0으로
+                rb.gravityScale = 2; //플레이어의 중력 값을 다시 원 상태로
+                isBoost = false;
+                if (particle.isPlaying)
+                {
+                    particle.Stop();
+                }
+            }
+        }
+    }
+    private void Jump()
+    {
+        if(isDown)
+        {
+            StartCoroutine(DisableCollision());
+        }
+        else if (isJumping)
+        {
+            if (isGrounded || isPlatform)
+            {
+                // 바닥에 있을 때 점프
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                animator.SetBool("OnJump", true); ;
+            }
+            else if (canDoubleJump)
+            {
+                // 공중에 있을 때 더블 점프
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                canDoubleJump = false; // 더블 점프 후 더 이상 점프 불가
+                animator.SetTrigger("OnDoubleJump");
+            }
+            isJumping = false;
+        }
+    }
+
+    private IEnumerator DisableCollision()
+    {
+        Debug.Log("실행");
+        // 발판의 콜라이더를 잠시 비활성화
+        Collider2D platformCollider = null;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, platformLayer);
+
+        if (hit.collider != null)
+        {
+            platformCollider = hit.collider;
+            platformCollider.enabled = false;
+            yield return new WaitForSeconds(1f);
+            platformCollider.enabled = true;
+        }
+
+        isDown = false;
     }
 }
