@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1610133030212946623}
   - component: {fileID: 4441635168013576321}
   - component: {fileID: 6909636051068907152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 1695662329218833428}
   - component: {fileID: 4442064103948677886}
   - component: {fileID: 3395398805819171314}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8570,7 +8570,7 @@ GameObject:
   - component: {fileID: 1811932324804665771}
   - component: {fileID: 8506089955433242393}
   - component: {fileID: 9132539103659403112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8851,7 +8851,7 @@ GameObject:
   - component: {fileID: 2709365333127903952}
   - component: {fileID: 6140811374829404633}
   - component: {fileID: 5058506712090354540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9101,7 +9101,7 @@ GameObject:
   - component: {fileID: 8257529492801844490}
   - component: {fileID: 367088648130230703}
   - component: {fileID: 1104736313169150103}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9351,7 +9351,7 @@ GameObject:
   - component: {fileID: 6223479517408110264}
   - component: {fileID: 4901956857662550698}
   - component: {fileID: 8273287004986393654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9601,7 +9601,7 @@ GameObject:
   - component: {fileID: 8247197878102374280}
   - component: {fileID: 1543057143548428157}
   - component: {fileID: 17444644812294071}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9851,6 +9851,10 @@ PrefabInstance:
       value: LeftWall
       objectReference: {fileID: 0}
     - target: {fileID: 6068369870392270004, guid: 8d7b0db0551be25448ae3db20fb8e8b7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068369870392270004, guid: 8d7b0db0551be25448ae3db20fb8e8b7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -9958,7 +9962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3189552254523304372, guid: 16658f12d889d33489bb05cdf144eaf2, type: 3}
       propertyPath: m_Name
-      value: DoorDown
+      value: DownDoor
       objectReference: {fileID: 0}
     - target: {fileID: 3189552254523304372, guid: 16658f12d889d33489bb05cdf144eaf2, type: 3}
       propertyPath: m_IsActive
@@ -10025,6 +10029,10 @@ PrefabInstance:
     - target: {fileID: 7479386370266228313, guid: 6e3aac22093981c40b7cfd32b3363427, type: 3}
       propertyPath: m_Name
       value: UpWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479386370266228313, guid: 6e3aac22093981c40b7cfd32b3363427, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7479386370266228313, guid: 6e3aac22093981c40b7cfd32b3363427, type: 3}
       propertyPath: m_IsActive
@@ -10113,6 +10121,10 @@ PrefabInstance:
     - target: {fileID: 5300464973980749858, guid: d6d32192e6d958f4f8178c8448db3ffe, type: 3}
       propertyPath: m_Name
       value: RightWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300464973980749858, guid: d6d32192e6d958f4f8178c8448db3ffe, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5300464973980749858, guid: d6d32192e6d958f4f8178c8448db3ffe, type: 3}
       propertyPath: m_IsActive
@@ -10222,7 +10234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8230258977386910758, guid: 9a52cbf36b2d50c41b22b1adbe85e5c9, type: 3}
       propertyPath: m_Name
-      value: DoorLeft
+      value: LeftDoor
       objectReference: {fileID: 0}
     - target: {fileID: 8230258977386910758, guid: 9a52cbf36b2d50c41b22b1adbe85e5c9, type: 3}
       propertyPath: m_IsActive
@@ -10249,6 +10261,10 @@ PrefabInstance:
     - target: {fileID: 3130761392856624722, guid: ec09c578c5ed3794c88b9b53ba52a9ae, type: 3}
       propertyPath: m_Name
       value: DownWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130761392856624722, guid: ec09c578c5ed3794c88b9b53ba52a9ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3130761392856624722, guid: ec09c578c5ed3794c88b9b53ba52a9ae, type: 3}
       propertyPath: m_IsActive
@@ -10354,7 +10370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3209679426788999512, guid: 55e7410192e330f4996c373238f56414, type: 3}
       propertyPath: m_Name
-      value: DoorUp
+      value: UpDoor
       objectReference: {fileID: 0}
     - target: {fileID: 3209679426788999512, guid: 55e7410192e330f4996c373238f56414, type: 3}
       propertyPath: m_IsActive
@@ -10424,7 +10440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9122409273816820686, guid: d21c2efdfd9bc1a4daadc8f4107fa491, type: 3}
       propertyPath: m_Name
-      value: DoorRight
+      value: RightDoor
       objectReference: {fileID: 0}
     - target: {fileID: 9122409273816820686, guid: d21c2efdfd9bc1a4daadc8f4107fa491, type: 3}
       propertyPath: m_IsActive

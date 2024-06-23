@@ -52,6 +52,7 @@ public enum MAPTYPE
 public enum STAGE
 {
     Stage1,
+    Stage2,
     // 추후 개발확장 시 추가
     StageMax
 }

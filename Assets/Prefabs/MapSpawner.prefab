@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   option:
-    maxNum: 0
-    minNum: 0
-    maxRestaurant: 0
-    bronzeChestPercent: 0
-    silverChestPercent: 0
-    goldChestPercent: 0
+    maxNum: 15
+    minNum: 10
+    maxRestaurant: 1
+    bronzeChestPercent: 0.6
+    silverChestPercent: 0.2
+    goldChestPercent: 0.1
     maxListSize: 5
   current:
     NowCount: 0

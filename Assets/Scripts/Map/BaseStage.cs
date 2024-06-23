@@ -90,7 +90,8 @@ public class BaseStage : MonoBehaviour
     public void LoadDoors()
     {
         // enum DOORTYPE 의 최대치로 배열 생성
-        door = new GameObject[(int)DOORTYPE.DoorMax];
+        if (this.type == ROOMTYPE.Start) door = new GameObject[(int)DOORTYPE.Right];
+        else door = new GameObject[(int)DOORTYPE.DoorMax];
 
         // 각 Door를 배열에 설정 후 비활성화
         for (int i = 0; i < door.Length; i++)

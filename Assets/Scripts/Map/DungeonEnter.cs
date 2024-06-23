@@ -27,8 +27,14 @@ public class DungeonEnter : MonoBehaviour
             robbyDoor.transform.position = tempPos;
             robbyDoor.SetActive(true);
             playerGO = collision.gameObject;
-            Invoke("EnterDungeon", 1f);
+            StartCoroutine(WaitAndEnterDungeon(1f));
         }
+    }
+
+    private IEnumerator WaitAndEnterDungeon(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        EnterDungeon();
     }
 
     public void EnterDungeon()
