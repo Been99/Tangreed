@@ -430,28 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9d82730a61b76409601ef569365c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallTilemap: {fileID: 0}
-  backTilemap: {fileID: 0}
-  movableTilemap: {fileID: 0}
-  mainWallTilemap: {fileID: 0}
-  mainBackTilemap: {fileID: 0}
-  mainMovableTilemap: {fileID: 0}
-  tile: {fileID: 0}
-  startPos: {fileID: 0}
-  endPos: {fileID: 0}
-  doorStartIndex: {x: 0, y: 0, z: 0}
-  doorEndIndex: {x: 0, y: 0, z: 0}
-  mainStartIndex: {x: 0, y: 0, z: 0}
-  mainEndIndex: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0}
   nextRoom: {fileID: 0}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  type: 0
-  parentStage: {fileID: 0}
+  type: 3
   nowDoorLocked: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   doorParticle: {fileID: 0}
-  mapInfoPos: {fileID: 0}
-  startIndex: {x: 0, y: 0, z: 0}
-  parentStartIndex: {x: 0, y: 0, z: 0}

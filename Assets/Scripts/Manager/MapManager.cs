@@ -47,12 +47,12 @@ public class MapManager : Singleton<MapManager>
         }
     }
 
-    private void Awake()
-    {
-        InitSetting();
-        NowStage = STAGE.Stage1;
-        NowFloor = 1;
-    }
+    //private void Awake()
+    //{
+    //    InitSetting();
+    //    NowStage = STAGE.Stage1;
+    //    NowFloor = 1;
+    //}
 
     // Resources의 Maps 폴더에서 가져온다.
     public void LoadStagePrefabs(STAGE stage)

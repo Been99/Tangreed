@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7235747125069854256}
   m_Layer: 0
-  m_Name: Door_DungeonEnter
+  m_Name: LobbyGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4954382967590251830}
   - component: {fileID: 4859084594163174097}
-  - component: {fileID: 7541961689617834444}
+  - component: {fileID: 4647838485309561258}
   m_Layer: 0
   m_Name: DungeonEnterTrigger
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.08406782, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -108,9 +108,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.83186436, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7541961689617834444
+--- !u!114 &4647838485309561258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  DungeonDoor: {fileID: 100128300689711813}
+  lobbyMap: {fileID: 3007982271962195859}
+  robbyDoor: {fileID: 100128300689711813}
   playerGO: {fileID: 0}
 --- !u!1 &1953429728864351940
 GameObject:
@@ -241,8 +242,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4954382967590251830}
-  - {fileID: 3387002542867775822}
   - {fileID: 7235747125069854256}
+  - {fileID: 3387002542867775822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3050433909482348871

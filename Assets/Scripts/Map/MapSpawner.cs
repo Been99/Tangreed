@@ -61,20 +61,19 @@ public class MapSpawner : Singleton<MapSpawner>
 
     public MapManager mapManger;
 
-    private void Awake()
-    {
-        InitSetting();
+    //private void Awake()
+    //{
+    //    InitSetting();
 
-    }
-    void Start()
-    {
-        SpawnStart(0);
-    }
+    //}
+    //void Start()
+    //{
+    //    SpawnStart(0);
+    //}
 
-    // 초기 세팅
     public void InitSetting()
     {
-        // StajeData와 Map에 배치될 Object의 정보를 초기화
+        // StageData와 Map에 배치될 Object의 정보를 초기화
         current.mapList = new StageData[option.maxListSize * option.maxListSize];
         current.mapObjList = new GameObject[option.maxListSize * option.maxListSize];
         for (int i = 0; i < option.maxListSize - 1; i++)
@@ -110,9 +109,8 @@ public class MapSpawner : Singleton<MapSpawner>
         current.mapObjList[index].GetComponent<BaseStage>().stageLinkedData = SetLinkingData(index);
     }
 
-    //linkedData에서 어느방향이 연결되어 있는 지 확인하고
-    //prefabs에서 해당방향에 방이 현재 만들어져 있는지 확인하고
-    //서로 연결한다.
+    //linkedData에서 어느방향이 연결되어 있는 지 확인한다.
+    //prefabs에서 해당방향에 방이 현재 만들어져 있는지 확인하고 서로 연결한다.
     public LinkedData SetLinkingData(int index)
     {
         LinkedData linkedData = new LinkedData();
@@ -319,31 +317,26 @@ public class MapSpawner : Singleton<MapSpawner>
         }
     }
 
-    //스포너에서 맵을 생성을 해서 맵 배열을 만들어 주고 해당 배열을 맵 매니저에 넘겨준다.
-    //public int MapSpawn(int x, int y, StageData Parent)
+    //DFS(깊이 우선 탐색)알고리즘을 사용해서 맵 배열을 만들어 주고 해당 배열을 맵 매니저에 넘겨준다.
     public Vector2Int MapSpawn(int x, int y, StageData Parent, int depth)
     {
-        //맵이 최대 개수까지 만들어 지면 종료한다.
+        //최대 방 개수에 도달하면 더이상 방을 생성하지 않고 현재 위치를 반환하여 재귀호출 중단
         if (current.NowCount >= option.maxNum)
         {
             return new Vector2Int(x, y);
         }
 
-        int RandNum;
         int yval = option.maxListSize;
 
-        //들어오면 해당 위치에 방을 만들고 
-        //음식점, 상점, 방 크기, 상자 스폰 등을 결정한다.
-        //보스전이 있어야 하면 보스방도 스폰
+        // 현재 좌표에 방이 없으면 새로운 StageData객체 생성, InitSetting으로 방 번호와 좌표를 설정하고 생성된 방의 개수(NowCount) 증가
         if (current.mapList[x + (y * yval)] == null)
         {
             current.mapList[x + (y * yval)] = new StageData();
             current.mapList[x + (y * yval)].InitSetting(current.NowCount, x, y);
             current.NowCount++;
 
-            //각 방들은 서로 연결되어서 이동할 수 있어야 하지만 인접해 있다고 항상 연결되어 있어야 하는것은 아니다
-            //따라서 탐색을 할때 자신이 현재 탐색한 위치에서 이전에 있었던 위치를 넘겨줌으로써
-            //탐색을 수행한 경로가 방을 이어주는 통로가 될 수 있도록 해준다.
+            //각 방들은 서로 연결되어서 이동할 수 있어야 하지만 인접해 있다고 연결되어 있어야 하는것은 아니다.
+            //현재 방과 부모 방을 연결하여 서로의 위치를 설정하고, 부모 방의 위치에 따라 연결
             if (Parent != null)
             {
                 if (Parent.indexX == x)
@@ -378,29 +371,25 @@ public class MapSpawner : Singleton<MapSpawner>
 
         }
 
-        //천번째 방은 항상 오른쪽으로간다.
+        //각각 재귀함수들을 호출하여 설정값에 도달할 때까지 방 생성
+        //첫번째 방은 항상 오른쪽으로 방을 생성
         if (current.NowCount == 1)
         {
-            MapSpawn(x + 1, y, current.mapList[(x) + (y * yval)], depth + 1);
-            //return option.MaxNum;
-            return new Vector2Int(x + 1, y);
+            MapSpawn(x + 1, y, current.mapList[(x) + (y * yval)], depth + 1); // 재귀호출, x축으로 +1 (오른쪽으로 방 생성)
+            return new Vector2Int(x + 1, y); // 새로운 방의 위치 (x+1, y)를 Vector2Int 객체로 반환
         }
 
-        //왼쪽
-        RandNum = Random.Range(0, 100);
-        //Debug.Log($"랜덤{RandNum}");
-        if (RandNum <= 70)
+        //70%의 확률로 왼쪽 방향 방 생성
+        if (Random.Range(0, 100) <= 70)
         {
-            if (x - 1 >= 1 && current.mapList[(x - 1) + (y * yval)] == null)
+            if (x - 1 >= 1 && current.mapList[(x - 1) + (y * yval)] == null) // 해당 위치에 이미 생성된 방이 있는지 확인하고 없으면 생성
             {
                 MapSpawn(x - 1, y, current.mapList[(x) + (y * yval)], depth + 1);
             }
         }
 
-        //오른쪽
-        RandNum = Random.Range(0, 100);
-
-        if (RandNum <= 70)
+        //70%의 확률로 오른쪽 방향 방 생성
+        if (Random.Range(0, 100) <= 70)
         {
             if (x + 1 <= option.maxListSize - 1 && current.mapList[(x + 1) + (y * yval)] == null)
             {
@@ -408,9 +397,8 @@ public class MapSpawner : Singleton<MapSpawner>
             }
         }
 
-        //위쪽
-        RandNum = Random.Range(0, 100);
-        if (RandNum <= 70)
+        //70%의 확률로 위쪽 방향 방 생성
+        if (Random.Range(0, 100) <= 70)
         {
             if (y - 1 >= 0 && current.mapList[x + ((y - 1) * yval)] == null)
             {
@@ -418,10 +406,8 @@ public class MapSpawner : Singleton<MapSpawner>
             }
         }
 
-        //아래쪽
-        RandNum = Random.Range(0, 100);
-
-        if (RandNum <= 70)
+        //70%의 확률로 아래쪽 방향 방 생성
+        if (Random.Range(0, 100) <= 70)
         {
             if (y + 1 <= option.maxListSize - 1 && current.mapList[x + ((y + 1) * yval)] == null)
             {
@@ -429,7 +415,7 @@ public class MapSpawner : Singleton<MapSpawner>
             }
         }
 
-        // 확률로 움직이도록 하면 최소개수가 만들어 지지 않을수 있기 때문에 최소 개수가 채워지지 않으면 4 방향중 비어있는 곳을 찾아서 강제로 생성시켜 줍니다.
+        // 확률로 방을 생성했기 때문에 최소 방 개수를 충족하지 못했을 경우 강제로 방을 생성
         if (current.NowCount < option.minNum)
         {
             for (int i = 0; i < 4; i++)
@@ -453,7 +439,7 @@ public class MapSpawner : Singleton<MapSpawner>
     public void SpawnStart(int NowFloor)
     {
         current.NowCount = 0;
-        //층수를 증가시키고맵을 만든자리를 DFS탐색 알고리즘을 통해서 뽑는다
+        //DFS탐색 알고리즘을 이용해 만든 맵 생성
         Vector2Int lastindex = MapSpawn(0, 2, null, 0);
         //맵을만들 자리 대로 맵을 실제로 생성해준다.
         StageSetting();
@@ -463,8 +449,6 @@ public class MapSpawner : Singleton<MapSpawner>
         {
             SetBossRoom(MapManager.Instance.NowStage);
         }
-
-        //ShowMaps();
 
         MapManager.Instance.StageSetting(current.mapObjList, option.maxListSize);
 

@@ -8,12 +8,14 @@ public class DungeonEnter : MonoBehaviour
 {
     public LayerMask playerLayer;
     public GameObject lobbyMap;
-    public GameObject dungeonDoor;
+    public GameObject robbyDoor;
     public GameObject playerGO = null;
+
+    public FadeEffect fadeEffect;
 
     private void Start()
     {
-        dungeonDoor.SetActive(false);
+        robbyDoor.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,9 +23,9 @@ public class DungeonEnter : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             // 플레이어의 X좌표와 Door의 Y좌표 이용 (collision.transform.position으로 했을 경우 문이 파묻혀서 생성된다.)
-            Vector3 tempPos = new Vector3(collision.transform.position.x, dungeonDoor.transform.position.y);
-            dungeonDoor.transform.position = tempPos;
-            dungeonDoor.SetActive(true);
+            Vector3 tempPos = new Vector3(collision.transform.position.x, robbyDoor.transform.position.y);
+            robbyDoor.transform.position = tempPos;
+            robbyDoor.SetActive(true);
             playerGO = collision.gameObject;
             Invoke("EnterDungeon", 1f);
         }
@@ -33,9 +35,10 @@ public class DungeonEnter : MonoBehaviour
     {
         if (playerGO != null)
         {
-            // 페이드아웃 효과
-            Destroy(lobbyMap);
+            fadeEffect.FadeIn();
+            Destroy(lobbyMap, 1.0f);
             // 던전 생성로직
+            fadeEffect.DelayedFadeOut(1.5f);
         }
     }
 }

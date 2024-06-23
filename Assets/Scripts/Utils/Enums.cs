@@ -83,16 +83,6 @@ public enum DOORTYPE
     DoorMax
 }
 
-// BaseStage에서 사용
-public enum TILEELEMENT
-{
-    BackGround,
-    Wall,
-    Movable,
-    Door,
-    ElementMax
-}
-
 public enum CHEST
 {
     Bronze,

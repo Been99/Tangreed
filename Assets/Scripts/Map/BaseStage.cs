@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 // 모든 던전 방들의 가장 최상위 클래스
 // 방의 모든 요소들(문, 함정, 몬스터, 스폰 포인트, 상자스폰 등)을 관리하고,
@@ -23,21 +18,15 @@ public class BaseStage : MonoBehaviour
     // 각 방들의 연결 정보
     public LinkedData stageLinkedData;
 
-    // 방들의 위치정보
-    public Transform startPos;
-    public Transform endPos;
-
     public ROOMTYPE type;
     public ROOMCLASS sizeClass;
+    public BoxCollider2D collider;
 
     // 방에대한 변수들
     public GameObject playerObj;
     public int nowFloor = 0;
     public int stageNum = -1;
     public bool roomLocked; // 몬스터를 다 잡으면 Lock이 풀린다.
-    public Vector2 RoomSize;
-    public Rect roomActiveArea;
-    public Rect roomArea;
 
     // 방 상태 변수, 프로퍼티
     public bool roomIsClear;
@@ -76,6 +65,7 @@ public class BaseStage : MonoBehaviour
     private void Awake()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
+        collider = GetComponent<BoxCollider2D>();
         
         //spawnPoint = GetComponentsInChildren<MonsterSpawnPoint>();
         
@@ -87,6 +77,15 @@ public class BaseStage : MonoBehaviour
     //    CheckRoomState();
     //     TODO :: 상자 나오는 로직 작성
     //}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            NowPlayerEnter = true;
+            CheckRoomState();
+        }
+    }
 
     public void LoadDoors()
     {
@@ -140,22 +139,6 @@ public class BaseStage : MonoBehaviour
                 door[(int)DOORTYPE.Down].gameObject.SetActive(true);
             }
         }
-
-        //if (type == ROOMTYPE.Start)
-        //{
-
-        //    startPos = transform.Find($"{MapManager.Instance.NowStage}StartGate");
-
-        //    if (playerObj != null)
-        //    {
-        //        playerObj.transform.position = startPos.position;
-        //        NowPlayerEnter = true;
-        //    }
-        //}
-        //else if (type == ROOMTYPE.End)
-        //{
-        //    endPos = transform.Find($"{MapManager.Instance.NowStage}EndGate");
-        //}
     }
 
     public void CheckRoomState()
@@ -165,17 +148,12 @@ public class BaseStage : MonoBehaviour
             if (myTime <= Time.time)
             {
                 myTime = Time.time + updateSecond;
-                Debug.Log("들어옴");
+                Debug.Log("방에 들어옴");
 
                 //아직 몬스터들이 스폰되지 않았거나 방이 클리어되지 않았을때 캐릭터의 입장을 검사한다.
                 if (nowSpawned == false && roomIsClear == false)
                 {
-                    //플레이어가 방 영역 안으로 들어오면 해당 문을 닫고 해당방의 몬스터들을 소환한다.
-                    //이미 몬스터들이 다 죽었거나 방이 클리어 되어 있거나 몬스터가 없는 방이면 그냥 그대로 둔다. 
-                    if (roomActiveArea.Contains(playerObj.transform.position))
-                    {
-                        RoomStart();
-                    }
+                    RoomStart();
                 }
 
                 //몹들이 스폰됐을때는 몬스터가 다 죽었는지를 검사한다.
@@ -225,7 +203,7 @@ public class BaseStage : MonoBehaviour
             //몬스터들을 스폰 시켜준다.
         }
 
-        //스폰될 몬스터가 없는 방은 바로 클리어 해준다.
+        //스폰될 몬스터가 없는 방은 클리어 해준다.
         //if (spawnPoint.Length <= 0)
         //{
         //    roomIsClear = true;
@@ -261,18 +239,4 @@ public class BaseStage : MonoBehaviour
     //{
 
     //}
-
-    public bool IsEnterPlayArea()
-    {
-        bool flag = false;
-        Vector3 pos = playerObj.transform.position;
-        if (pos.x >= roomActiveArea.xMin && pos.x <= roomActiveArea.xMax)
-        {
-            if (pos.y <= roomActiveArea.yMin && pos.y >= roomActiveArea.yMax)
-            {
-                flag = true;
-            }
-        }
-        return flag;
-    }
 }
