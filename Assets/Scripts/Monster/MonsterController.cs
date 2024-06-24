@@ -12,17 +12,17 @@ public class MonsterController : MonoBehaviour
 
     public bool isAttacking = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         healthSystem.OnDeathEvent += OnDeath;
     }
 
-    private void FixedUpdate()
+    protected virtual void Update()
     {
         if (healthSystem == null) { return; }
         if (healthSystem.currentHP <= 0) { return; }
