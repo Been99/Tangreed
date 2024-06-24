@@ -85,7 +85,7 @@ public class PlayerStatHandler : MonoBehaviour
 
         // 변경을 적용하되, 최소값을 적용함
         //currentAttack.delay = Mathf.Max(operation(currentAttack.delay, newAttack.delay), MinAttackDelay);
-        currentAttack.Damage = (int)Mathf.Max(operation(currentAttack.Damage, newAttack.Damage), MinAttackPower);
+        currentAttack.power = (int)Mathf.Max(operation(currentAttack.power, newAttack.power), MinAttackPower);
     }
 
     //private void UpdateRangedAttackStats(Func<float, float, float> operation, RangedAttackSO currentRanged, RangedAttackSO newRanged)
