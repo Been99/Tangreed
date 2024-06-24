@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8987519716215999452
 Transform:
@@ -45,17 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   option:
-    maxNum: 15
-    minNum: 10
+    maxNum: 7
+    minNum: 5
     maxRestaurant: 1
-    bronzeChestPercent: 0.6
-    silverChestPercent: 0.2
-    goldChestPercent: 0.1
-    maxListSize: 5
+    maxListSize: 4
   current:
     NowCount: 0
     RestaurantCount: 0
     mapList: []
     currentRoomObjs: []
     mapObjList: []
-  mapManger: {fileID: 0}

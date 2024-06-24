@@ -12,6 +12,7 @@ public class PlayerStatHandler : MonoBehaviour
     public PlayerStat CurrentStat { get; private set; } = new();
     public List<PlayerStat> statModifiers = new List<PlayerStat>();
 
+    private readonly float MinAttackDelay = 1f;
     private readonly float MinCritical = 5f; // 공격 딜레이 최소값
     private readonly float MinAttackPower = 0.5f; //공격력 최소값
     private readonly float MinAttackSize = 0.4f; //공격 크기 최소값
@@ -64,10 +65,10 @@ public class PlayerStatHandler : MonoBehaviour
         UpdateBasicStats(operation, modifier);
         UpdateAttackStats(operation, modifier);
 
-        //if (CurrentStat.playerSO is RangedAttackSO currentRanged && modifier.playerSO is RangedAttackSO newRanged)
-        //{
-        //    UpdateRangedAttackStats(operation, currentRanged, newRanged);
-        //}
+        if (CurrentStat.playerSO is PlayerRangedAttackSO currentRanged && modifier.playerSO is PlayerRangedAttackSO newRanged)
+        {
+            UpdateRangedAttackStats(operation, currentRanged, newRanged);
+        }
     }
 
     private void UpdateBasicStats(Func<float, float, float> operation, PlayerStat modifier)
@@ -84,25 +85,12 @@ public class PlayerStatHandler : MonoBehaviour
         var newAttack = modifier.playerSO;
 
         // 변경을 적용하되, 최소값을 적용함
-        //currentAttack.delay = Mathf.Max(operation(currentAttack.delay, newAttack.delay), MinAttackDelay);
-        currentAttack.Damage = (int)Mathf.Max(operation(currentAttack.Damage, newAttack.Damage), MinAttackPower);
+        currentAttack.delay = Mathf.Max(operation(currentAttack.delay, newAttack.delay), MinAttackDelay);
+        currentAttack.power = (int)Mathf.Max(operation(currentAttack.power, newAttack.power), MinAttackPower);
     }
 
-    //private void UpdateRangedAttackStats(Func<float, float, float> operation, RangedAttackSO currentRanged, RangedAttackSO newRanged)
-    //{
-    //    currentRanged.multipleProjectilesAngle = operation(currentRanged.multipleProjectilesAngle, newRanged.multipleProjectilesAngle);
-    //    currentRanged.spread = operation(currentRanged.spread, newRanged.spread);
-    //    currentRanged.duration = operation(currentRanged.duration, newRanged.duration);
-    //    currentRanged.numberofProjectilesPerShot = Mathf.CeilToInt(operation(currentRanged.numberofProjectilesPerShot, newRanged.numberofProjectilesPerShot));
-    //    currentRanged.projectileColor = UpdateColor(operation, currentRanged.projectileColor, newRanged.projectileColor);
-    //}
-
-    //private Color UpdateColor(Func<float, float, float> operation, Color current, Color modifier)
-    //{
-    //    return new Color(
-    //        operation(current.r, modifier.r),
-    //        operation(current.g, modifier.g),
-    //        operation(current.b, modifier.b),
-    //        operation(current.a, modifier.a));
-    //}
+    private void UpdateRangedAttackStats(Func<float, float, float> operation, PlayerRangedAttackSO currentRanged, PlayerRangedAttackSO newRanged)
+    {
+        currentRanged.duration = operation(currentRanged.duration, newRanged.duration);
+    }
 }
