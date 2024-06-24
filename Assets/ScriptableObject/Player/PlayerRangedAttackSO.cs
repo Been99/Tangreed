@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerRangedAttack", menuName = "SO/Player/New PlayerRangedAttack", order = 0)]
+[CreateAssetMenu(fileName = "RangedAttackSO", menuName = "Player/RangedAttackSO", order = 1)]
 
 public class PlayerRangedAttackSO : PlayerAttackSO
 {
