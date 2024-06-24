@@ -14,10 +14,11 @@ public class InputController : MonoBehaviour
     private Camera mainCam;
     [HideInInspector] public Animator animator;
     private ParticleSystem particle;
-
+    private PlayerStatHandler playerStatHandler;
     /*Player*/
     [SerializeField] private SpriteRenderer armRenderer;
     [SerializeField] private Transform armPivot;
+    [SerializeField] private Transform AttackPivot;
     [SerializeField] private SpriteRenderer characterRenderer;
 
 
@@ -38,7 +39,7 @@ public class InputController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 50f;
 
-    public Action PlayerHit;
+    public Action PlayerAttack;
 
     float dashSpeed = 15f;
     float CheckTime = 0.25f;
@@ -123,8 +124,21 @@ public class InputController : MonoBehaviour
         float rotz = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; //Y,X값을 넣어 각도를 구한 뒤 라디안을 각도로 변경
 
         characterRenderer.flipX = Mathf.Abs(rotz) > 90f; // 캐릭터 각도가 절대값이 90보다 크면 (Abs = Absolut value) 캐릭터를 뒤집음
-        armRenderer.flipY = characterRenderer.flipX;
-        armPivot.rotation = Quaternion.Euler(0, 0, rotz); //쿼터니언 오일러를 통해각도를 지정해줌
+
+        //armRenderer.flipY = characterRenderer.flipX;
+        //armPivot.rotation = Quaternion.Euler(0, 0, MathF.Min(30f, rotz)); //쿼터니언 오일러를 통해각도를 지정해줌
+        //AttackPivot.rotation = Quaternion.Euler(0, 0, rotz);
+
+        if (Mathf.Abs(rotz) < 90f)
+        {
+            armPivot.rotation = Quaternion.Euler(0, 0, MathF.Min(30f, rotz)); //쿼터니언 오일러를 통해각도를 지정해줌
+            AttackPivot.rotation = Quaternion.Euler(0, 0, rotz);
+        }
+        else
+        {
+            armPivot.rotation = Quaternion.Euler(180, 0, MathF.Max(-210f, -rotz)); //쿼터니언 오일러를 통해각도를 지정해줌
+            //AttackPivot.rotation = Quaternion.Euler(0, 0, -rotz);
+        }
     }
 
     public void OnDashInPut(InputAction.CallbackContext context)
@@ -139,13 +153,10 @@ public class InputController : MonoBehaviour
 
     public void OnFireInput(InputAction.CallbackContext context) //공격 인풋 세팅
     {
-        //무기 Sprite쪽에 붙일 예정
+        Attack();
+        PlayerAttack?.Invoke();
     }
 
-    public void OnHit()
-    {
-        PlayerHit?.Invoke(); //Player Manager로 이동 예정
-    }
 
     private void Boost()
     {
@@ -218,6 +229,11 @@ public class InputController : MonoBehaviour
             }
             isJumping = false;
         }
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("OnAttack");
     }
 
     private IEnumerator DisableCollision()

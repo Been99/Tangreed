@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class MonsterAnimationController : MonoBehaviour
 {
-    private Animator animator;
-    private HealthSystem healthSystem;
-    private MonsterController monsterController;
+    protected Animator animator;
+    protected HealthSystem healthSystem;
+    protected MonsterController monsterController;
 
     private static readonly float magnitudeThreshold = 0.1f;
-    private static readonly int isMovingHash = Animator.StringToHash("isMoving");
+    protected static readonly int isMovingHash = Animator.StringToHash("isMoving");
     private static readonly int attackTriggerHash = Animator.StringToHash("attack");
     private static readonly int hitTriggerHash = Animator.StringToHash("hit");
-    private static readonly int deadTriggerHash = Animator.StringToHash("dead");
+    protected static readonly int deadTriggerHash = Animator.StringToHash("dead");
 
-    private bool isDead = false;
+    protected bool isDead = false;
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -33,7 +34,7 @@ public class MonsterAnimationController : MonoBehaviour
         }
     }
 
-    private void Moving(Vector2 direction)
+    protected void Moving(Vector2 direction)
     {
         if (isDead) { return; }
         animator.SetBool(isMovingHash, direction.magnitude > magnitudeThreshold);
@@ -51,17 +52,18 @@ public class MonsterAnimationController : MonoBehaviour
         animator.SetTrigger(hitTriggerHash);
     }
 
-    private void Death()
+    protected virtual void Death()
     {
         if (isDead) { return; }
 
+        isDead = true;
         animator.SetBool(isMovingHash, false);
         animator.SetTrigger(deadTriggerHash);
 
         StartCoroutine(DeactivateAfterDelay(2f));
     }
 
-    private IEnumerator DeactivateAfterDelay(float delay)
+    protected IEnumerator DeactivateAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);

@@ -9,7 +9,7 @@ public class MonsterMechanism : MonoBehaviour
     private LayerMask groundLayer;
 
     private float groundCheckDistance = 0.1f;
-    private float detectionRadius = 5f;
+    public float detectionRadius ;
     private float gravityScaleNormal = 0f; // 기본 중력
     private float gravityScaleFalling = 10f; // 떨어질 때 중력
     private float maxFallSpeed = -10f; // 최대 낙하 속도
