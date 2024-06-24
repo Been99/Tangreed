@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632a90f5b3982b846be2519721a46a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 5
+  detectionRadius: 6
   isGrounded: 1
 --- !u!114 &391485712524582955
 MonoBehaviour:
