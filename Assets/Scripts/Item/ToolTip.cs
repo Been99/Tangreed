@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ToolTip : MonoBehaviour
@@ -11,18 +12,28 @@ public class ToolTip : MonoBehaviour
     public TextMeshProUGUI itemStrengthText;
     public TextMeshProUGUI itemDefensiveText;
     public TextMeshProUGUI itemDescriptionText;
-    public GameObject toolTipObj;
+    public RectTransform toolTipObj;
+    private RectTransform toolTipRect;
 
     // TODO : 아이템 스탯 어디까지 툴팁에 표현할건지?
 
     private void Start()
     {
-        toolTipObj.SetActive(false);
+        toolTipRect = GetComponent<RectTransform>();
+        toolTipRect.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        // TODO : 마우스 위치에 따라 툴팁이 켜지게 하기
+        if (toolTipObj.gameObject.activeSelf)
+        {
+            Vector2 localPosition;
+            Vector2 mousePos = Input.mousePosition;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(toolTipRect, mousePos, null, out localPosition);
+            localPosition.x -= toolTipObj.sizeDelta.x * 0.65f;
+            toolTipObj.anchoredPosition = localPosition;
+            // ** 정리 필요함 -> 앞으로 잘 쓸 수 있을 듯
+        }
     }
 
     public void ShowToolTip(Sprite itemImg, string itemName, string attackStrength, string defensive, string itemDes)
@@ -33,7 +44,7 @@ public class ToolTip : MonoBehaviour
         itemDefensiveText.text = defensive;
         itemDescriptionText.text = itemDes;
     }
-
+    
     // TODO : 툴팁이 켜져있는 상태로 인벤토리를 닫으면 툴팁도 같이 꺼지게
 }
 
