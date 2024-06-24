@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
-  m_Name: TestItem-weapon 2
+  m_Name: Axe(2)
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8\uBB34\uAE302"
-  itemDescription: "\uD14C\uC2A4\uD2B8\uBB34\uAE302\uC785\uB2C8\uB2E4"
+  itemName: "\uC7A5\uB3C4\uB07C"
+  itemDescription: "\uC77C\uBC18 \uB3C4\uB07C\uBCF4\uB2E4 \uAE38\uC774\uAC00 \uAE41\uB2C8\uB2E4"
   itemType: 0
-  icon: {fileID: 1223980883, guid: 4ae8847915abf1447b8243c19b2f3c59, type: 3}
+  icon: {fileID: 2763922148311456047, guid: 580ad8fc1fbbbb04f8ef66857606eef6, type: 3}
+  dropPrefab: {fileID: 3787837248962391550, guid: 4e63843ff88713d47a113fb2d02938dc, type: 3}
   itemStats:
-  - itemStat: 2
-    statValue: 1111
-  - itemStat: 3
-    statValue: 124
-  - itemStat: 4
-    statValue: 10
   - itemStat: 1
-    statValue: 342
-  itemPrice: 0
+    statValue: 12
+  - itemStat: 3
+    statValue: -2
+  itemPrice: 630

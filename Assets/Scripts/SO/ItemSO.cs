@@ -18,6 +18,7 @@ public class ItemSO : ScriptableObject
     public string itemDescription; // 아이템 설명
     public EItemType itemType; // 아이템 타입
     public Sprite icon; // 아이템 이미지
+    public GameObject dropPrefab;
 
     [Header("ItemStat")]
     public ItemStat[] itemStats;
@@ -25,5 +26,5 @@ public class ItemSO : ScriptableObject
     [Header("ItemPrice")]
     public int itemPrice; // 아이템 가격
 
-    // TODO : 더 필요한 내용 확인 후 적용
+    // 셋팅 시 공격력과 방어력은 함께할 수 없고 공속과 이속은 함께할 수 없다는 걸 전제로 두
 }

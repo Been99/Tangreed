@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
+  m_Name: Ring(2)
+  m_EditorClassIdentifier: 
+  itemName: "\uAC15\uD654\uB41C \uC601\uB871\uD55C \uBC18\uC9C0"
+  itemDescription: "\uAC15\uD654\uC5D0 \uC131\uACF5\uD55C \uC601\uB871\uD55C \uBC18\uC9C0\uC785\uB2C8\uB2E4"
+  itemType: 2
+  icon: {fileID: 21300000, guid: 85023bf699c56124d81e7cfead621430, type: 3}
+  dropPrefab: {fileID: 4327456282211503618, guid: 9c4f2524c387c5c48a87411dbccbe0ca, type: 3}
+  itemStats:
+  - itemStat: 2
+    statValue: 12
+  - itemStat: 4
+    statValue: 5
+  - itemStat: 1
+    statValue: 17
+  itemPrice: 1032

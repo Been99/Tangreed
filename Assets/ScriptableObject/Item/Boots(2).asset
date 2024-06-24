@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
-  m_Name: TestItem-weapon 2
+  m_Name: Boots(2)
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8\uBB34\uAE302"
-  itemDescription: "\uD14C\uC2A4\uD2B8\uBB34\uAE302\uC785\uB2C8\uB2E4"
-  itemType: 0
-  icon: {fileID: 1223980883, guid: 4ae8847915abf1447b8243c19b2f3c59, type: 3}
+  itemName: "\uD2BC\uD2BC\uD55C \uBD80\uCE20"
+  itemDescription: "\uD2BC\uD2BC\uD574\uBCF4\uC774\uB294 \uC2E0\uBC1C\uC785\uB2C8\uB2E4"
+  itemType: 1
+  icon: {fileID: 21300000, guid: 25978b279a6a29c4582447bb47d70638, type: 3}
+  dropPrefab: {fileID: 5074331336363026723, guid: bfc1073102c3d894bacc94c7219fca43, type: 3}
   itemStats:
   - itemStat: 2
-    statValue: 1111
-  - itemStat: 3
-    statValue: 124
+    statValue: 15
   - itemStat: 4
-    statValue: 10
-  - itemStat: 1
-    statValue: 342
-  itemPrice: 0
+    statValue: 3
+  itemPrice: 684

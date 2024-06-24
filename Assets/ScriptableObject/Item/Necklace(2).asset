@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
+  m_Name: Necklace(2)
+  m_EditorClassIdentifier: 
+  itemName: "\uC6D0\uC11D\uBAA9\uAC78\uC774"
+  itemDescription: "\uC6D0\uC11D\uC73C\uB85C \uB9CC\uB4E0 \uBAA9\uAC78\uC774\uC774\uB2E4
+    \uBB34\uAC70\uC6CC\uBCF4\uC778\uB2E4"
+  itemType: 2
+  icon: {fileID: 21300000, guid: 96ac7b09d8455d247a9152e1903ae754, type: 3}
+  dropPrefab: {fileID: 3809180882697000306, guid: fa4d91867f4bf3442ad507b8063dd67e, type: 3}
+  itemStats:
+  - itemStat: 2
+    statValue: 10
+  - itemStat: 4
+    statValue: -2
+  itemPrice: 840

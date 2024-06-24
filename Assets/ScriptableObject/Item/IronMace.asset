@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
-  m_Name: TestItem-weapon 2
+  m_Name: IronMace
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8\uBB34\uAE302"
-  itemDescription: "\uD14C\uC2A4\uD2B8\uBB34\uAE302\uC785\uB2C8\uB2E4"
+  itemName: "\uCCA0\uD1F4\uBABD\uB465\uC774"
+  itemDescription: "\uAC15\uD55C \uC704\uB825\uC744 \uAC00\uC84C\uC2B5\uB2C8\uB2E4"
   itemType: 0
-  icon: {fileID: 1223980883, guid: 4ae8847915abf1447b8243c19b2f3c59, type: 3}
+  icon: {fileID: 9207855582011397726, guid: 2f5438dedc40c8e418a5fd20ecfbccdb, type: 3}
+  dropPrefab: {fileID: 9135116977660556995, guid: 7f174bf12e997c749bd16934b7449363, type: 3}
   itemStats:
-  - itemStat: 2
-    statValue: 1111
-  - itemStat: 3
-    statValue: 124
-  - itemStat: 4
-    statValue: 10
   - itemStat: 1
-    statValue: 342
-  itemPrice: 0
+    statValue: 25
+  - itemStat: 3
+    statValue: -4
+  itemPrice: 823

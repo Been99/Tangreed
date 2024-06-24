@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,9 +10,6 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Image outLine;
     public ItemSO itemData;
 
-    // 추후 삭제예정
-    public string power;
-    public string defesive;
 
     void Start()
     {
@@ -21,12 +20,38 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         itemData = GetComponent<ItemSlot>().itemSO;
 
-        if(itemData != null )
+        if (itemData != null )
         {
             outLine.enabled = true;
             toolTip.gameObject.SetActive(true);
-            toolTip.ShowToolTip(itemData.icon, itemData.itemName, power, defesive, itemData.itemDescription);
+            toolTip.ShowToolTipBasicData(itemData.icon, itemData.itemName, itemData.itemDescription);
+            ItemStatCheck();
         }
+    }
+
+    public void ItemStatCheck()
+    {
+        if (itemData.itemStats != null)
+        {
+            for (int i = 0; i < itemData.itemStats.Length; i++)
+            {
+                switch (itemData.itemStats[i].itemStat)
+                {
+                    case EItemStat.Strength:
+                        toolTip.itemStrengthText.text = "공격력 : " + itemData.itemStats[i].statValue;
+                        break;
+                    case EItemStat.Defensive:
+                        toolTip.itemDefensiveText.text = "방어력 : " + itemData.itemStats[i].statValue;
+                        break;
+                    case EItemStat.AttackSpeed:
+                        toolTip.itemAttackSpeedText.text = "공격속도 : " + itemData.itemStats[i].statValue;
+                        break;
+                    case EItemStat.MovingSpeed:
+                        toolTip.itemMovingSpeedText.text = "이동속도 : " + itemData.itemStats[i].statValue;
+                        break;
+                }
+            }
+        }       
     }
 
     public void OnPointerExit(PointerEventData eventData)

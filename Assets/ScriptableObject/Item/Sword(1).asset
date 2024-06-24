@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca1ca799fdde9724da134f8008c283e6, type: 3}
-  m_Name: TestItem-weapon 2
+  m_Name: Sword(1)
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8\uBB34\uAE302"
-  itemDescription: "\uD14C\uC2A4\uD2B8\uBB34\uAE302\uC785\uB2C8\uB2E4"
+  itemName: "\u3134\u3147\u3131 \uCE7C"
+  itemDescription: "\uC7A5\uC2DD\uC774 \uB3C5\uD2B9\uD55C \uCE7C\uC785\uB2C8\uB2E4"
   itemType: 0
-  icon: {fileID: 1223980883, guid: 4ae8847915abf1447b8243c19b2f3c59, type: 3}
+  icon: {fileID: 2545729084865480563, guid: 222c67064971e9b48a5d8f1375a6dbd2, type: 3}
+  dropPrefab: {fileID: 8986707270604148814, guid: d01c45efaa8eb224f9ba62aa834468e7, type: 3}
   itemStats:
-  - itemStat: 2
-    statValue: 1111
-  - itemStat: 3
-    statValue: 124
-  - itemStat: 4
-    statValue: 10
   - itemStat: 1
-    statValue: 342
-  itemPrice: 0
+    statValue: 3
+  - itemStat: 3
+    statValue: 2
+  itemPrice: 500
