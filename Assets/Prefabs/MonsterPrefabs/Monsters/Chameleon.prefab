@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f3431e5e8241843b2c44d368046e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSystem: {fileID: 0}
   isAttacking: 0
 --- !u!114 &3257308014072845065
 MonoBehaviour:
@@ -274,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632a90f5b3982b846be2519721a46a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRadius: 5
   isGrounded: 1
 --- !u!114 &7290656437406733933
 MonoBehaviour:
