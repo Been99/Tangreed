@@ -8,8 +8,6 @@ public class BatLialCondition : MonoBehaviour
 
     public Slider hpSlider;
 
-    public int decayAmount = 19; // 1초마다 닳을 체력 양
-
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
@@ -18,7 +16,6 @@ public class BatLialCondition : MonoBehaviour
     private void Start()
     {
         healthSystem.OnDamageEvent += UpdateHealthUI;
-        StartCoroutine(HealthDecayCoroutine());
     }
 
     private void UpdateHealthUI()
@@ -30,15 +27,6 @@ public class BatLialCondition : MonoBehaviour
         else
         {
             hpSlider.value = 0;
-        }
-    }
-
-    private IEnumerator HealthDecayCoroutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f); // 1초 대기
-            healthSystem.ChangeHealth(-decayAmount); // 체력 감소
         }
     }
 }
