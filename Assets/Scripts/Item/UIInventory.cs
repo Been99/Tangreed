@@ -128,4 +128,9 @@ public class UIInventory : MonoBehaviour
         }
         return null;
     }
+
+    public void ExitButton()
+    {
+        gameObject.SetActive(false);
+    }
 }
