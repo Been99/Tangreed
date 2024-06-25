@@ -745,6 +745,7 @@ MonoBehaviour:
   mainSceneMusicClips:
   - {fileID: 8300000, guid: 9511040a69361ae4d8bed739b69f65fb, type: 3}
   bossMusic: {fileID: 8300000, guid: e467a4e29a83c354d87d35e5f6b03eee, type: 3}
+  endingMusic: {fileID: 8300000, guid: 51d9c4f478882d249923a6182cbd9d8b, type: 3}
 --- !u!82 &1688909566
 AudioSource:
   m_ObjectHideFlags: 0

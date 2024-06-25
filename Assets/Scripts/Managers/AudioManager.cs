@@ -7,6 +7,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip startSceneMusic;
     public AudioClip[] mainSceneMusicClips;
     public AudioClip bossMusic;
+    public AudioClip endingMusic;
     private AudioSource audioSource;
 
     protected override void Awake()
@@ -80,6 +81,15 @@ public class AudioManager : Singleton<AudioManager>
         StopAllMusic();
 
         audioSource.clip = bossMusic;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+    public void PlayEndingMusic()
+    {
+        StopAllMusic();
+
+        audioSource.clip = endingMusic;
         audioSource.loop = true;
         audioSource.Play();
     }

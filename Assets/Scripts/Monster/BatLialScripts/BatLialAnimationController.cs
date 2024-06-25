@@ -30,6 +30,7 @@ public class BatLialAnimationController : MonsterAnimationController
 
         StartCoroutine(DeactivateAfterDelay(2f));
         SpawnShards();
+        GameManager.Instance.HandleBatLialDeath();
     }
 
     private void SpawnShards()
