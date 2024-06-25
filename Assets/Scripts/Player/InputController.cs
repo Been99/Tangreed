@@ -45,6 +45,11 @@ public class InputController : MonoBehaviour
     float CheckTime = 0.25f;
     float TimeSpan = 0f;
 
+    // 머지 전 확인 필요
+    public UIInventory inventory;
+    //public ItemBox itemBox;
+    private bool activeUI = false;
+    // public event Action OnInteractEvent;
 
 
     private void Awake()
@@ -246,5 +251,25 @@ public class InputController : MonoBehaviour
         }
 
         isDown = false;
+    }
+
+    // 머지 전 공유 필요!
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventory.gameObject.SetActive(!activeUI);
+            activeUI = !activeUI;
+        }
+    }
+
+    // 머지 전 공유 필요!
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            Debug.Log("상호작용버튼");
+            //OnInteractEvent?.Invoke();
+        }
     }
 }

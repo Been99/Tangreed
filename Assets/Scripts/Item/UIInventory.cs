@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UIInventory : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UIInventory : MonoBehaviour
 
     [SerializeField] private GameObject inventoryWindow;
 
+    //public List<ItemSO> ownedItems = new List<ItemSO>();
 
     private void Awake()
     {
@@ -43,6 +45,12 @@ public class UIInventory : MonoBehaviour
         inventoryWindow.SetActive(false);       
     }
 
+    private void OnEnable() //  오브젝트가 활성화 될때 마다 들어옴
+    {
+        // TODO : 아이템이 자가증식함..
+        //ShowItem();
+    }
+
     void SetInventorySlot(ItemSlot[] slots, Transform itemslots)
     {
         for (int i = 0; i < slots.Length; i++)
@@ -52,6 +60,30 @@ public class UIInventory : MonoBehaviour
             slots[i].inventory = this;
         }
     }
+
+    //void ShowItem()
+    //{
+    //    for(int i = 0; i < GameManager.Instance.ownedItems.Count; i++)
+    //    {
+    //        ItemSO itemData = GameManager.Instance.ownedItems[i];
+
+    //        switch (itemData.itemType)
+    //        {
+    //            case EItemType.Weapon:
+    //                EquipItemSlotSet(equip1Slots, equip2Slots, 0, itemData);
+    //                break;
+    //            case EItemType.armor:
+    //                EquipItemSlotSet(equip1Slots, equip2Slots, 1, itemData);
+    //                break;
+    //            case EItemType.Accessory:
+    //                AccItemSlotSet(equipAccSlots, itemData);
+    //                break;
+    //            default:
+    //                UnEquipItemSlotSet(itemData);
+    //                break;
+    //        }
+    //    }
+    //}
 
     void AddItem()
     {

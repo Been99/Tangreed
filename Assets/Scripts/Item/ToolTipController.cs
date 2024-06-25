@@ -59,5 +59,9 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         outLine.enabled = false;
         toolTip.gameObject.SetActive(false);
+        toolTip.itemStrengthText.text = "공격력 : ";
+        toolTip.itemDefensiveText.text = "방어력 : ";  
+        toolTip.itemAttackSpeedText.text = "공격속도 : ";
+        toolTip.itemMovingSpeedText.text = "이동속도 : ";
     }
 }
