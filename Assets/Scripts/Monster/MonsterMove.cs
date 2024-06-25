@@ -76,7 +76,7 @@ public class MonsterMove : MonoBehaviour
 
         direction = LinearMove(direction);
 
-        if (monsterMechanism.IsGroundInDirection(direction))
+        if (monsterMechanism.IsGroundInDirection(direction) || monsterMechanism.IsPlatformDirection(direction))
         {
             Vector2 movement = direction * moveSpeed;
             _rb.velocity = movement;
