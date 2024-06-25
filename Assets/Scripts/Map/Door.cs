@@ -77,7 +77,7 @@ public class Door : MonoBehaviour
         switch (doorType)
         {
             case DoorType.Up:
-                offset = new Vector3(0, 20, 0);
+                offset = new Vector3(0, 22, 0);
                 break;
             case DoorType.Down:
                 offset = new Vector3(0, -20, 0);
@@ -86,7 +86,7 @@ public class Door : MonoBehaviour
                 offset = new Vector3(24, 0, 0);
                 break;
             case DoorType.Left:
-                offset = new Vector3(24, 0, 0);
+                offset = new Vector3(-24, 0, 0);
                 break;
         }
 
