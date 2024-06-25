@@ -9,8 +9,8 @@ public class MonsterAnimationController : MonoBehaviour
 
     private static readonly float magnitudeThreshold = 0.1f;
     protected static readonly int isMovingHash = Animator.StringToHash("isMoving");
-    private static readonly int attackTriggerHash = Animator.StringToHash("attack");
-    private static readonly int hitTriggerHash = Animator.StringToHash("hit");
+    protected static readonly int attackTriggerHash = Animator.StringToHash("attack");
+    protected static readonly int hitTriggerHash = Animator.StringToHash("hit");
     protected static readonly int deadTriggerHash = Animator.StringToHash("dead");
 
     protected bool isDead = false;
@@ -22,7 +22,12 @@ public class MonsterAnimationController : MonoBehaviour
         monsterController = GetComponent<MonsterController>();
     }
 
-    private void Start()
+    protected virtual void Start()
+    {
+        SubscribeToEvents();
+    }
+
+    protected virtual void SubscribeToEvents()
     {
         monsterController.OnMoveEvent += Moving;
         monsterController.OnAttackEvent += Attacking;
@@ -40,13 +45,13 @@ public class MonsterAnimationController : MonoBehaviour
         animator.SetBool(isMovingHash, direction.magnitude > magnitudeThreshold);
     }
 
-    private void Attacking(MonsterAttackSO monsterAttackSO)
+    protected void Attacking(MonsterAttackSO monsterAttackSO)
     {
         if (isDead) { return; }
         animator.SetTrigger(attackTriggerHash);
     }
 
-    private void Hitting()
+    protected void Hitting()
     {
         if (isDead) { return; }
         animator.SetTrigger(hitTriggerHash);

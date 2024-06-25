@@ -79,26 +79,33 @@ public class BatLialAttack : MonsterAttack // 뱃리알 전용
     {
         while (true)
         {
-            for (int i = 0; i < numberOfProjectiles; i++)
+            if (target != null)
             {
-                float angleStep = spreadAngle / numberOfProjectiles;
-                float angle = i * angleStep;
-
-                float projectileDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180);
-                float projectileDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180);
-
-                Vector3 projectileVector = new Vector3(projectileDirX, projectileDirY, 0);
-                Vector3 projectileMoveDirection = (projectileVector - transform.position).normalized;
-
-                GameObject projectile = Instantiate(homingProjectilePrefab, transform.position, Quaternion.identity);
-                BatLialHomingProjectileController projectileController = projectile.GetComponent<BatLialHomingProjectileController>();
-
-                if (projectileController != null)
+                for (int i = 0; i < numberOfProjectiles; i++)
                 {
-                    projectileController.Initialize(projectileMoveDirection, target, monsterStatsHandler.currentStats.monsterAttackSO);
-                }
+                    float angleStep = spreadAngle / numberOfProjectiles;
+                    float angle = i * angleStep;
 
-                yield return new WaitForSeconds(projectileInterval);
+                    float projectileDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180);
+                    float projectileDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180);
+
+                    Vector3 projectileVector = new Vector3(projectileDirX, projectileDirY, 0);
+                    Vector3 projectileMoveDirection = (projectileVector - transform.position).normalized;
+
+                    GameObject projectile = Instantiate(homingProjectilePrefab, transform.position, Quaternion.identity);
+                    BatLialHomingProjectileController projectileController = projectile.GetComponent<BatLialHomingProjectileController>();
+
+                    if (projectileController != null)
+                    {
+                        projectileController.Initialize(projectileMoveDirection, target, monsterStatsHandler.currentStats.monsterAttackSO);
+                    }
+
+                    yield return new WaitForSeconds(projectileInterval);
+                }
+            }
+            else
+            {
+                yield return null;
             }
         }
     }
