@@ -18,15 +18,18 @@ public class PlayerStatHandler : MonoBehaviour
     private readonly float MinAttackSize = 0.4f; //공격 크기 최소값
     private readonly float MinAttackSpeed = 0.1f; // 공격 스피드 최소값
     private readonly float MinSpeed = 0.8f; //속도 최소값
+    private readonly float MinDamage = 3;
+    private readonly float MinDefense = 2;
+    private readonly int MinMaxDashCount = 2;
     private readonly int MinMaxHealth = 50; // 최대 체력의 최소값
 
     private void Awake()
     {
-        if (baseStat.playerSO != null)
-        {
-            baseStat.playerSO = Instantiate(baseStat.playerSO);
-            CurrentStat.playerSO = Instantiate(baseStat.playerSO);
-        }
+        //if (baseStat.playerSO != null)
+        //{
+        //    baseStat.playerSO = Instantiate(baseStat.playerSO);
+        //    CurrentStat.playerSO = Instantiate(baseStat.playerSO);
+        //}
         UpdateCharacterStat();
     }
 
@@ -63,34 +66,28 @@ public class PlayerStatHandler : MonoBehaviour
         };
 
         UpdateBasicStats(operation, modifier);
-        UpdateAttackStats(operation, modifier);
-
-        if (CurrentStat.playerSO is PlayerRangedAttackSO currentRanged && modifier.playerSO is PlayerRangedAttackSO newRanged)
-        {
-            UpdateRangedAttackStats(operation, currentRanged, newRanged);
-        }
+        //UpdateAttackStats(operation, modifier);
     }
 
     private void UpdateBasicStats(Func<float, float, float> operation, PlayerStat modifier)
     {
+        CurrentStat.Damage = Mathf.Max((int)operation(CurrentStat.Damage, modifier.Damage), MinDamage);
+        CurrentStat.Defense = Mathf.Max((int)operation(CurrentStat.Defense, modifier.Defense), MinDefense);
         CurrentStat.maxHealth = Mathf.Max((int)operation(CurrentStat.maxHealth, modifier.maxHealth), MinMaxHealth); //Mathf.Max를 통해서 최소값을 결정. 5 미만으로 떨어지면 5가 적용
-        CurrentStat.speed = Mathf.Max(operation(CurrentStat.speed, modifier.speed), MinSpeed); //속도도 동일
+        CurrentStat.Critical = Mathf.Max(operation(CurrentStat.Critical, modifier.Critical), MinCritical);
+        CurrentStat.speed = Mathf.Max(operation(CurrentStat.speed, modifier.speed), MinSpeed);
+        CurrentStat.DashMax = Mathf.Max(operation(CurrentStat.DashMax, modifier.DashMax), MinMaxDashCount);
     }
 
-    private void UpdateAttackStats(Func<float, float, float> operation, PlayerStat modifier)
-    {
-        if (CurrentStat.playerSO == null || modifier.playerSO == null) return;
+    //private void UpdateAttackStats(Func<float, float, float> operation, PlayerStat modifier)
+    //{
+    //    if (CurrentStat.playerSO == null || modifier.playerSO == null) return;
 
-        var currentAttack = CurrentStat.playerSO;
-        var newAttack = modifier.playerSO;
+    //    var currentAttack = CurrentStat.playerSO;
+    //    var newAttack = modifier.playerSO;
 
-        // 변경을 적용하되, 최소값을 적용함
-        currentAttack.delay = Mathf.Max(operation(currentAttack.delay, newAttack.delay), MinAttackDelay);
-        currentAttack.power = (int)Mathf.Max(operation(currentAttack.power, newAttack.power), MinAttackPower);
-    }
-
-    private void UpdateRangedAttackStats(Func<float, float, float> operation, PlayerRangedAttackSO currentRanged, PlayerRangedAttackSO newRanged)
-    {
-        currentRanged.duration = operation(currentRanged.duration, newRanged.duration);
-    }
+    //     변경을 적용하되, 최소값을 적용함
+    //    currentAttack.delay = Mathf.Max(operation(currentAttack.delay, newAttack.delay), MinAttackDelay);
+    //    currentAttack.power = (int)Mathf.Max(operation(currentAttack.power, newAttack.power), MinAttackPower);
+    //}
 }

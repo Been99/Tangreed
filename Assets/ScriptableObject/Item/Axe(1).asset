@@ -17,7 +17,24 @@ MonoBehaviour:
   itemType: 0
   icon: {fileID: 212143399115013302, guid: a2e519a17fd8ae5488d21a08236fbb8b, type: 3}
   dropPrefab: {fileID: 8702891174122048696, guid: 82bb7490914008144985d668c10a57d7, type: 3}
+  size: 1
+  delay: 2
+  power: 10
+  speed: 1
+  target:
+    serializedVersion: 2
+    m_Bits: 128
   itemStats:
   - itemStat: 1
     statValue: 8
+  statsModifier:
+  - statsChangeType: 0
+    Damage: 8
+    Defense: 0
+    maxHealth: 0
+    Critical: 0
+    speed: 0
+    Dashcount: 0
+    DashMax: 0
+    Dashcool: 0
   itemPrice: 480

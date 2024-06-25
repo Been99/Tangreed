@@ -5455,7 +5455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6235760512528686353}
   m_Layer: 3
-  m_Name: SowrdPivot
+  m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

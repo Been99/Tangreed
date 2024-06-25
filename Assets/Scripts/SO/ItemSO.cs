@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -19,9 +20,16 @@ public class ItemSO : ScriptableObject
     public EItemType itemType; // 아이템 타입
     public Sprite icon; // 아이템 이미지
     public GameObject dropPrefab;
+    public float size;
+    public float delay;
+    public int power;
+    public float speed;
+    public LayerMask target;
 
     [Header("ItemStat")]
     public ItemStat[] itemStats;
+
+    public List<PlayerStat> statsModifier;
 
     [Header("ItemPrice")]
     public int itemPrice; // 아이템 가격
