@@ -132,7 +132,7 @@ public class InputController : MonoBehaviour
         if (Mathf.Abs(rotz) < 90f)
         {
             armPivot.rotation = Quaternion.Euler(0, 0, MathF.Min(30f, rotz)); //쿼터니언 오일러를 통해각도를 지정해줌
-            AttackPivot.rotation = Quaternion.Euler(0, 0, rotz);
+            //AttackPivot.rotation = Quaternion.Euler(0, 0, rotz);
         }
         else
         {

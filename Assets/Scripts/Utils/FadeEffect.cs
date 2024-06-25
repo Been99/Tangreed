@@ -23,6 +23,11 @@ public class FadeEffect : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(1, 0));
     }
 
+    public void FadeInAndOut(float time)
+    {
+        StartCoroutine(FadeInAndOutCoroutine(time));
+    }
+
     private IEnumerator FadeCanvasGroup(float start, float end)
     {
         float elapsedTime = 0.0f;
@@ -35,6 +40,18 @@ public class FadeEffect : MonoBehaviour
         }
 
         canvasGroup.alpha = end;
+    }
+
+    private IEnumerator FadeInAndOutCoroutine(float time)
+    {
+        // 페이드 인 시작
+        yield return StartCoroutine(FadeCanvasGroup(0, 1));
+
+        // time만큼 대기
+        yield return new WaitForSeconds(time);
+
+        // 페이드 아웃 시작
+        yield return StartCoroutine(FadeCanvasGroup(1, 0));
     }
 
     public void DelayedFadeOut(float delay)
