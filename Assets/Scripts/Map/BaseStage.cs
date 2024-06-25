@@ -14,6 +14,8 @@ public class BaseStage : MonoBehaviour
     private bool roomCleared = false;
     private bool isPlayerInRoom = false;
 
+    private Transform chestSpawnPosition;
+
     void Start()
     {
         // 동적으로 문 오브젝트를 찾기
@@ -23,9 +25,13 @@ public class BaseStage : MonoBehaviour
         spawnPositions = new List<Transform>();
         foreach (Transform child in transform)
         {
-            if (child.name.Contains("SpawnPosition"))
+            if (child.name.Contains("SpawnPosition") && child.name != "ChestSpawnPosition")
             {
                 spawnPositions.Add(child);
+            }
+            if (child.name == "ChestSpawnPosition")
+            {
+                chestSpawnPosition = child;
             }
         }
 
@@ -97,6 +103,10 @@ public class BaseStage : MonoBehaviour
             if (roomCleared)
             {
                 OpenDoors();
+                if (chestSpawnPosition.childCount == 0) // 상자가 없는 경우에만 상자 스폰
+                {
+                    SpawnChest();
+                }
             }
         }
     }
@@ -158,6 +168,16 @@ public class BaseStage : MonoBehaviour
         {
             roomCleared = true;
             OpenDoors();
+            SpawnChest(); // 방이 클리어되면 상자를 스폰
+        }
+    }
+
+    private void SpawnChest()
+    {
+        GameObject chestPrefab = MonsterSpawner.Instance.GetChest();
+        if (chestPrefab != null && chestSpawnPosition != null && chestSpawnPosition.childCount == 0)
+        {
+            Instantiate(chestPrefab, chestSpawnPosition.position, Quaternion.identity, chestSpawnPosition);
         }
     }
 }
