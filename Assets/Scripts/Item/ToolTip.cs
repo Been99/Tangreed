@@ -40,11 +40,6 @@ public class ToolTip : MonoBehaviour
         itemImage.sprite = itemImg;
         itemNameText.text = itemName;
         itemDescriptionText.text = itemDes;
-
-        //itemAttackSpeedText.gameObject.SetActive(false);
-        //itemDefensiveText.gameObject.SetActive(false);
-        //itemAttackSpeedText.gameObject.SetActive(false);
-        //itemMovingSpeedText.gameObject.SetActive(false);
     }
     
     // TODO : 툴팁이 켜져있는 상태로 인벤토리를 닫으면 툴팁도 같이 꺼지게

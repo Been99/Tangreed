@@ -12,7 +12,8 @@ public class ItemSlot : MonoBehaviour
 
     public void SetSlot()
     {
-        iconImage.sprite = itemSO.icon;
+        Debug.Log("확인");
+        iconImage.sprite = itemSO.icon;       
     }
 
     public void ClearSlot()
