@@ -153,7 +153,6 @@ public class InputController : MonoBehaviour
 
     public void OnFireInput(InputAction.CallbackContext context) //공격 인풋 세팅
     {
-        Attack();
         PlayerAttack?.Invoke();
     }
 
@@ -229,11 +228,6 @@ public class InputController : MonoBehaviour
             }
             isJumping = false;
         }
-    }
-
-    private void Attack()
-    {
-        animator.SetTrigger("OnAttack");
     }
 
     private IEnumerator DisableCollision()
