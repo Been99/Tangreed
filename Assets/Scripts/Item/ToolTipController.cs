@@ -31,6 +31,7 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void ItemStatCheck()
     {
+        // TODO : 한번 불러온 자료의 데이터가 계속 지속되는 버그
         if (itemData.itemStats != null)
         {
             for (int i = 0; i < itemData.itemStats.Length; i++)
