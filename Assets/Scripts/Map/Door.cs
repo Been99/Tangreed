@@ -9,10 +9,14 @@ public class Door : MonoBehaviour
     public LayerMask playerLayer;
     public FadeEffect fadeEffect;
     private GameObject playerGO = null;
+    private Vector3 currentPosition;
+
+    public GameObject doorCollider;
 
     public void Start()
     {
         fadeEffect = FindObjectOfType<FadeEffect>();
+        doorCollider = transform.Find("MainSprite").gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +24,42 @@ public class Door : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerGO = collision.gameObject;
+            currentPosition = doorCollider.transform.position;
+
+            BaseStage baseStage = GetComponentInParent<BaseStage>();
+            if (baseStage != null)
+            {
+                baseStage.OnPlayerEnterRoom();
+            }
             StartCoroutine(HandleDoorTransition());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            BaseStage baseStage = GetComponentInParent<BaseStage>();
+            if (baseStage != null)
+            {
+                baseStage.OnPlayerExitRoom();
+            }
+        }
+    }
+
+    public void Close()
+    {
+        if (doorCollider != null)
+        {
+            doorCollider.SetActive(true);
+        }
+    }
+
+    public void Open()
+    {
+        if (doorCollider != null)
+        {
+            doorCollider.SetActive(false);
         }
     }
 
@@ -30,22 +69,31 @@ public class Door : MonoBehaviour
         fadeEffect.FadeIn();
         yield return new WaitForSeconds(fadeEffect.fadeDuration);
 
+
         // 플레이어 위치 변경
+
+        Vector3 offset = Vector3.zero;
+
         switch (doorType)
         {
             case DoorType.Up:
-                playerGO.transform.position += new Vector3(0, 20, 0);
+                offset = new Vector3(0, 20, 0);
                 break;
             case DoorType.Down:
-                playerGO.transform.position += new Vector3(0, -20, 0);
+                offset = new Vector3(0, -20, 0);
                 break;
             case DoorType.Right:
-                playerGO.transform.position += new Vector3(25, 0, 0);
+                offset = new Vector3(24, 0, 0);
                 break;
             case DoorType.Left:
-                playerGO.transform.position += new Vector3(-25, 0, 0);
+                offset = new Vector3(24, 0, 0);
                 break;
         }
+
+        // 화면 좌표를 기준으로 플레이어 위치 변경
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(currentPosition + offset);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        playerGO.transform.position = new Vector3(worldPos.x, worldPos.y, playerGO.transform.position.z);
 
         // 페이드 아웃 시작
         fadeEffect.FadeOut();
