@@ -11,7 +11,7 @@ public class InteractEventHandler : MonoBehaviour
     public GameObject prompt;
     // public GameObject interaction;
     public GameObject inventoryObj;
-    public ItemBox itemBox;
+    private ItemBox itemBox;
 
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private LayerMask itemBoxLayer;
@@ -47,6 +47,7 @@ public class InteractEventHandler : MonoBehaviour
         }
         else if ((itemBoxLayer.value & (1 << itemObject.layer)) != 0)
         { 
+            itemBox = collision.GetComponent<ItemBox>();
             itemBox.StartAnim();
             StartCoroutine(OpenItemBox(itemObject));
         }
