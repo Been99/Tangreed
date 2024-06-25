@@ -7,47 +7,62 @@ public class MonsterMechanism : MonoBehaviour
 
     private LayerMask playerLayer;
     private LayerMask groundLayer;
+    private LayerMask platformLayer;
 
-    private float groundCheckDistance = 0.1f;
+    private float checkDistance = 0.1f;
     public float detectionRadius ;
     private float gravityScaleNormal = 0f; // 기본 중력
     private float gravityScaleFalling = 10f; // 떨어질 때 중력
     private float maxFallSpeed = -10f; // 최대 낙하 속도
 
     public bool isGrounded = true;
+    public bool isPlatformed = true;
 
     private void Awake()
     {
         playerLayer = LayerMask.GetMask("Player");
         groundLayer = LayerMask.GetMask("Ground");
+        platformLayer = LayerMask.GetMask("Platform");
         _rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
     {
-        CheckGround();
+        CheckGroundAndPlatform();
         LimitFallSpeed();
     }
 
-    private void CheckGround()
+    private void CheckGroundAndPlatform()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y - boxCollider.bounds.extents.y); // 콜라이더의 가장 하단부분을 레이캐스트의 시작점으로 잡기 위함
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
+        RaycastHit2D groundHit = Physics2D.Raycast(origin, Vector2.down, checkDistance, groundLayer);
+        RaycastHit2D platformHit = Physics2D.Raycast(origin, Vector2.down, checkDistance, platformLayer);
 
-        if (hit.collider != null)
+        if (groundHit.collider != null || platformHit.collider != null)
         {
-            isGrounded = true;
+            isGrounded = groundHit.collider != null;
+            isPlatformed = platformHit.collider != null;
+
             _rb.gravityScale = gravityScaleNormal; // 중력을 즉시 0으로 설정
             if (_rb.velocity.y < 0) // 아래쪽으로 떨어지는 속도만 제거
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, 0);
             }
-            transform.position = new Vector2(transform.position.x, hit.point.y + boxCollider.bounds.extents.y);
+
+            if (groundHit.collider != null)
+            {
+                transform.position = new Vector2(transform.position.x, groundHit.point.y + boxCollider.bounds.extents.y);
+            }
+            else if (platformHit.collider != null)
+            {
+                transform.position = new Vector2(transform.position.x, platformHit.point.y + boxCollider.bounds.extents.y);
+            }
         }
         else
         {
             isGrounded = false;
+            isPlatformed = false;
             SmoothGravityScaleChange(gravityScaleFalling);
         }
     }
@@ -55,7 +70,15 @@ public class MonsterMechanism : MonoBehaviour
     public bool IsGroundInDirection(Vector2 direction)
     {
         Vector2 origin = new Vector2(transform.position.x + direction.x, transform.position.y - boxCollider.bounds.extents.y);
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, checkDistance, groundLayer);
+
+        return hit.collider != null;
+    }
+
+    public bool IsPlatformDirection(Vector2 direction)
+    {
+        Vector2 origin = new Vector2(transform.position.x + direction.x, transform.position.y - boxCollider.bounds.extents.y);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, checkDistance, platformLayer);
 
         return hit.collider != null;
     }

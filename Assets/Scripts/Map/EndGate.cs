@@ -16,7 +16,7 @@ public class EndGate : MonoBehaviour
     private void Start()
     {
         nextStageButton = GetComponentInChildren<Button>();
-        nextStageButton.enabled = false;
+        nextStageButton.gameObject.SetActive(false);
         stage1 = GameObject.Find("Stage1(Clone)");
         fadeEffect = FindObjectOfType<FadeEffect>();
     }
@@ -34,7 +34,7 @@ public class EndGate : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerGO = collision.gameObject;
-            nextStageButton.enabled = true;
+            nextStageButton.gameObject.SetActive(true);
             isPlayerInTrigger = true;
             
         }
@@ -45,7 +45,7 @@ public class EndGate : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerGO = null;
-            nextStageButton.enabled = false;
+            nextStageButton.gameObject.SetActive(false);
             isPlayerInTrigger = false;
             
         }
