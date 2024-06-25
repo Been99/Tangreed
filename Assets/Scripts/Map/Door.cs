@@ -34,10 +34,10 @@ public class Door : MonoBehaviour
         switch (doorType)
         {
             case DoorType.Up:
-                playerGO.transform.position += new Vector3(0, 18, 0);
+                playerGO.transform.position += new Vector3(0, 20, 0);
                 break;
             case DoorType.Down:
-                playerGO.transform.position += new Vector3(0, -18, 0);
+                playerGO.transform.position += new Vector3(0, -20, 0);
                 break;
             case DoorType.Right:
                 playerGO.transform.position += new Vector3(25, 0, 0);
