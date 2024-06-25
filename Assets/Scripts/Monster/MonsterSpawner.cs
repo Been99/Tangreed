@@ -7,6 +7,8 @@ public class MonsterSpawner : Singleton<MonsterSpawner>
     public List<GameObject> rangedMonsters; // 원거리 몬스터 프리팹 리스트
     public List<GameObject> bossMonsters;   // 보스 몬스터 프리팹 리스트
 
+    public GameObject chestPrefab;          // 상자 프리팹
+
     public GameObject GetRandomMonster()
     {
         List<GameObject> allMonsters = new List<GameObject>();
@@ -33,5 +35,10 @@ public class MonsterSpawner : Singleton<MonsterSpawner>
         // 랜덤으로 보스 몬스터 프리팹을 반환
         int index = 0;
         return bossMonsters[index];
+    }
+
+    public GameObject GetChest()
+    {
+        return chestPrefab;
     }
 }
