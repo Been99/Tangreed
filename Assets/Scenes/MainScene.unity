@@ -1009,6 +1009,7 @@ MonoBehaviour:
   - {fileID: 5219875519441399270, guid: 6f8ca1e31895a5a4ea5e1a0b2adb7052, type: 3}
   bossMonsters:
   - {fileID: 3612126925336246562, guid: d0382cc1f126800468afd745e663d00e, type: 3}
+  chestPrefab: {fileID: 3729396046411355153, guid: 35fe17979be9d3440b89659afdcb49a2, type: 3}
 --- !u!4 &1511120462
 Transform:
   m_ObjectHideFlags: 0

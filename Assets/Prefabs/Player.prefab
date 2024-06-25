@@ -5321,7 +5321,7 @@ MonoBehaviour:
     statsChangeType: 2
     Damage: 0
     Defense: 0
-    maxHealth: 50
+    maxHealth: 100
     Critical: 0
     speed: 5.5
     Dashcount: 2
