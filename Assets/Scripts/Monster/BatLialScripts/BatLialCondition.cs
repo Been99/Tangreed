@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +10,15 @@ public class BatLialCondition : MonoBehaviour
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
-    }
-
-    private void Start()
-    {
         healthSystem.OnDamageEvent += UpdateHealthUI;
     }
 
-    private void UpdateHealthUI()
+    private void Update()
+    {
+        UpdateHealthUI();
+    }
+
+    public void UpdateHealthUI()
     {
         if (healthSystem.maxHP > 0)
         {

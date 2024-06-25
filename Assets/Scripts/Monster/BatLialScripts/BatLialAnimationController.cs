@@ -9,6 +9,17 @@ public class BatLialAnimationController : MonsterAnimationController
     public float shardMaxTorque = 10f;
     public float shardDuration = 4f;
 
+    protected override void SubscribeToEvents()
+    {
+        monsterController.OnAttackEvent += Attacking;
+
+        if (healthSystem != null)
+        {
+            healthSystem.OnDamageEvent += Hitting;
+            healthSystem.OnDeathEvent += Death;
+        }
+    }
+
     protected override void Death()
     {
         if (isDead) { return; }
