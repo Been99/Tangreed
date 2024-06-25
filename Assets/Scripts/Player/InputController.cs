@@ -51,7 +51,6 @@ public class InputController : MonoBehaviour
     private bool activeUI = false;
     // public event Action OnInteractEvent;
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

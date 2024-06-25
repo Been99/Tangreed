@@ -7,8 +7,10 @@ using UnityEditor;
 
 public class ButtonSwitch : MonoBehaviour
 {
-    public GameObject RetryButton;
-    public GameObject ExitButton;
+    public void OnPlayButton()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 
     public void OnRetryButton()
     {

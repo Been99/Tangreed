@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392bec7047660ee40b9fd15e0e58f570, type: 3}
   m_Name: BatLialAttackSO
   m_EditorClassIdentifier: 
-  attackDamage: 6
+  attackDamage: 4
   attackDelay: 0.4
   attackRange: 10
   projectileSpeed: 7

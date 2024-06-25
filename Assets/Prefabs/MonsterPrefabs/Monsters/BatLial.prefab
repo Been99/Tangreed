@@ -562,7 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     monsterName: Batlial
-    maxHP: 200
+    maxHP: 175
     moveSpeed: 0
     experienceReward: 150
     monsterAttackSO: {fileID: 11400000, guid: 464b8ade26af592479009374432b310c, type: 2}
@@ -580,6 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRadius: 10
   isGrounded: 1
+  isPlatformed: 1
 --- !u!114 &1313238006509090003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +656,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 1855639913533567806}
-  decayAmount: 19
 --- !u!1 &3632365194464202780
 GameObject:
   m_ObjectHideFlags: 0
