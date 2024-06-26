@@ -51,6 +51,15 @@
 
 <br><br>
 
+## :timer_clock: 프로젝트 수행 절차
+
+![image](https://github.com/Yoonwoojoo/Tangreed/assets/167274465/c931b189-4e02-4988-a9e5-5cc20cfcdd3b)
+![image](https://github.com/Yoonwoojoo/Tangreed/assets/167274465/85e5f81d-677d-457a-bfe1-d1ae5e3f6757)
+![image](https://github.com/Yoonwoojoo/Tangreed/assets/167274465/82cb2de1-e7fc-4a8e-9e22-6bcd3c25f1d0)
+![image](https://github.com/Yoonwoojoo/Tangreed/assets/167274465/dc319bdc-83c6-4756-97cc-df547f4b69b8)
+
+
+<br><br>
 
 ## :notebook: 기술 스택
 #### Generic Singleton
